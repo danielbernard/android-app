@@ -196,6 +196,17 @@ public class ApiFacade {
 				args, receiver, null);
 	}
 	
+	public void analogWrite(String coreName, String pinId, int oldValue, int newValue) {
+		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
+				TinkerResponse.REQUEST_TYPE_WRITE, coreName, pinId,
+				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue, newValue);
+		Bundle args = new Bundle();
+		args.putString("params", pinId + "," + newValue);
+
+		SimpleSparkApiService.post(ctx, new String[] { "devices", coreName, "analogwrite" },
+				args, receiver, null);
+	}
+	
 	// Senior Design Code
 	public void toggle_activation(String coreId, String pinId, int oldValue) {
 		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
@@ -216,15 +227,44 @@ public class ApiFacade {
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
 				args, receiver, null);
 	}
-
-	public void analogWrite(String coreName, String pinId, int oldValue, int newValue) {
+	
+	public void set_rgb(String coreName, String pinId, int oldValue, int newValue) {
 		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
 				TinkerResponse.REQUEST_TYPE_WRITE, coreName, pinId,
 				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue, newValue);
 		Bundle args = new Bundle();
-		args.putString("params", pinId + "," + newValue);
+		args.putString("params",  "s_rgb," + newValue);
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
+				args, receiver, null);
+	}
+	
+	public void rainbow(String coreId, String pinId, int oldValue) {
+		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
+				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
+				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue);
+		Bundle args = new Bundle();
+		args.putString("params", "rainbow");
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
+				args, receiver, null);
+	}
 
-		SimpleSparkApiService.post(ctx, new String[] { "devices", coreName, "analogwrite" },
+	public void enable_rgb(String coreId, String pinId, int oldValue) {
+		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
+				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
+				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue);
+		Bundle args = new Bundle();
+		args.putString("params", "e_rgb");
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
+				args, receiver, null);
+	}
+	
+	public void disable_rgb(String coreId, String pinId, int oldValue) {
+		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
+				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
+				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue);
+		Bundle args = new Bundle();
+		args.putString("params", "d_rgb");
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
 				args, receiver, null);
 	}
 
