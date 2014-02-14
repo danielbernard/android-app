@@ -206,6 +206,16 @@ public class ApiFacade {
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
 				args, receiver, null);
 	}
+	
+	public void set_rgbl(String coreName, String pinId, int oldValue, int newValue) {
+		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
+				TinkerResponse.REQUEST_TYPE_WRITE, coreName, pinId,
+				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue, newValue);
+		Bundle args = new Bundle();
+		args.putString("params",  "s_rgbl," + newValue);
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
+				args, receiver, null);
+	}
 
 	public void analogWrite(String coreName, String pinId, int oldValue, int newValue) {
 		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
