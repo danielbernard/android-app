@@ -207,7 +207,7 @@ public class ApiFacade {
 				args, receiver, null);
 	}
 	
-	// Senior Design Code
+	// Senior Design Functions
 	public void toggle_activation(String coreId, String pinId, int oldValue) {
 		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
 				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
@@ -267,7 +267,8 @@ public class ApiFacade {
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
 				args, receiver, null);
 	}
-
+	
+	// Senior Design Variables
 
 	/**
 	 * This class is just to give a more clear, semantic interface to
