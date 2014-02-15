@@ -228,16 +228,6 @@ public class ApiFacade {
 				args, receiver, null);
 	}
 	
-	public void set_rgb(String coreName, String pinId, int oldValue, int newValue) {
-		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
-				TinkerResponse.REQUEST_TYPE_WRITE, coreName, pinId,
-				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue, newValue);
-		Bundle args = new Bundle();
-		args.putString("params",  "s_rgb," + newValue);
-		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
-				args, receiver, null);
-	}
-	
 	public void rainbow(String coreId, String pinId, int oldValue) {
 		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
 				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
@@ -248,23 +238,14 @@ public class ApiFacade {
 				args, receiver, null);
 	}
 
-	public void enable_rgb(String coreId, String pinId, int oldValue) {
-		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
-				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
-				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue);
+	public void blink_led(String coreName, String pinId, int oldValue, 
+			int color, int rate, int iter) {
+		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
+				TinkerResponse.REQUEST_TYPE_WRITE, coreName, pinId,
+				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue, color);
 		Bundle args = new Bundle();
-		args.putString("params", "e_rgb");
-		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
-				args, receiver, null);
-	}
-	
-	public void disable_rgb(String coreId, String pinId, int oldValue) {
-		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
-				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
-				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue);
-		Bundle args = new Bundle();
-		args.putString("params", "d_rgb");
-		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
+		args.putString("params",  "b_led," + color + "," + rate + "," + iter);
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
 				args, receiver, null);
 	}
 	
