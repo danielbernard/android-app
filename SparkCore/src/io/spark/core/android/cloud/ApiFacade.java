@@ -248,14 +248,6 @@ public class ApiFacade {
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
 				args, receiver, null);
 	}
-	
-	// Senior Design Variables
-	// Need to look into manipulating the get/post commands to either properly use the
-	// Bundle, receiver, and broadcast, commented for now
-/*	public void get_bat_level(String coreId) {
-		SimpleSparkApiService.get(ctx, new String[] { "devices", coreId, "bat_level" }, 
-				args, receiver, null)
-	}*/
 
 	/**
 	 * This class is just to give a more clear, semantic interface to
