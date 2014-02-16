@@ -217,6 +217,11 @@ public class ApiFacade {
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
 				args, receiver, null);
 	}
+	public void toggle_activation_test(String coreId) {
+		Bundle args = new Bundle();
+		args.putString("params", "t_act");
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, args, null, null);
+	}
 	
 	public void set_rgbl(String coreName, String pinId, int oldValue, int newValue) {
 		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
@@ -248,7 +253,8 @@ public class ApiFacade {
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
 				args, receiver, null);
 	}
-
+	// Testing .gitignore
+	
 	/**
 	 * This class is just to give a more clear, semantic interface to
 	 * ResultReceiver when using this Service, and provide a standard way of
