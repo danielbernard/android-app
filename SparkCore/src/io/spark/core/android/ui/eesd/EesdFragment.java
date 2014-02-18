@@ -25,6 +25,7 @@ public class EesdFragment  extends BaseFragment implements OnClickListener {
 
 	AlertDialog selectDialog;
 	private Device device;
+	Button selectedButton;
 
 	public static EesdFragment newInstance(String deviceId) {
 		Bundle arguments = new Bundle();
@@ -102,13 +103,14 @@ public class EesdFragment  extends BaseFragment implements OnClickListener {
 		Ui.findView(this, R.id.tinker_main).setOnClickListener(this);
 	}
 	
-	private void onOptionSelect(OptionType selectedOption) {
-		if (selectedOption != null) {
-			switch (selectedOption) {
+	
+	private void onButtonClick(Button selectedButton) {
+		if (selectedButton.getConfiguredAction() != ButtonAction.NONE) {
+			switch (selectedButton.getConfiguredAction()) {
 				case TOGGLE_ACTIVATION:
 					doToggleActivation();
 					break;
-				case SET_RGBL:
+				/*case SET_RGBL:
 					doSetRgbl();
 					break;
 				case RAINBOW:
@@ -116,30 +118,26 @@ public class EesdFragment  extends BaseFragment implements OnClickListener {
 					break;
 				case BLINK_LED:
 					doBlinkLed();
-					break;
+					break;*/
 				default:
 					break;
 			}
 		}
 	}
 	
-	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.eesd_button_toggle_activation:
-				onFunctionSelected(selectedOption, ButtonAction.TOGGLE_ACTIVATION);
+				onFunctionSelected(selectedButton, ButtonAction.TOGGLE_ACTIVATION);
 				break;
-			case R.id.eesd_button_set_rgbl:
-				onFunctionSelected(selectedOption, ButtonAction.SET_RGBL);
-				break;
+			// Implement other buttons
 			default:
 				break;
-				
 		}
 	}
 	
-	private void onFunctionSelected(Pin selectedPin, PinAction action) {
+	private void onFunctionSelected(Button selectedButton, ButtonAction action) {
 		if (selectDialog != null) {
 			selectDialog.dismiss();
 			selectDialog = null;
@@ -147,8 +145,8 @@ public class EesdFragment  extends BaseFragment implements OnClickListener {
 		//toggleViewVisibilityWithFade(R.id.tinker_logo, true);
 
 		//selectedPin.reset();
-		//selectedPin.setConfiguredAction(action);
-		prefs.savePinFunction(device.id, selectedPin.name, action);
+		selectedButton.setConfiguredAction(action);
+		prefs.savePinFunction(device.id, selectedButton.name, action);
 		// hideTinkerSelect();
 		// unmutePins();
 	}
