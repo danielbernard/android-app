@@ -320,4 +320,5 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		api.toggleActivation(deviceById.id);
 		Log.d("button","BUTTON!");
 	}
+	//comment
 }
