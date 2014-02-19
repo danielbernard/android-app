@@ -639,7 +639,7 @@ public class TinkerFragment extends BaseFragment implements OnClickListener {
 	
 	private void doToggleActivation(Pin pin) {
 //		api.toggle_activation(device.id, pin.name, pin.getAnalogValue());
-		api.toggle_activation(device.id);
+		api.toggleActivation(device.id);
 	}
 
 	@Override

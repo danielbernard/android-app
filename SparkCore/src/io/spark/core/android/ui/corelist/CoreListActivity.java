@@ -317,7 +317,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	}
 	
 	public void eesdButton(View view) {
-		api.toggle_activation(deviceById.id);
+		api.toggleActivation(deviceById.id);
 		Log.d("button","BUTTON!");
 	}
 }

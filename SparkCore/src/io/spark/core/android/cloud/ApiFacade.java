@@ -249,12 +249,12 @@ public class ApiFacade {
 	
 	*/
 	
-	public void toggle_activation(String coreId) {
+	public void toggleActivation(String coreId) {
 		Bundle args = new Bundle();
 		args.putString("params", "t_act");
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, args, null, null);
 	}
-	public void set_rgbl(String coreId, int color) {
+	public void setRgbl(String coreId, int color) {
 		Bundle args = new Bundle();
 		args.putString("params", "s_rgbl," + color);
 		SimpleSparkApiService.post(ctx, new String[] { "devices", coreId, "fn_r" }, args, null, null);
@@ -264,7 +264,7 @@ public class ApiFacade {
 		args.putString("params", "rainbow");
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId, "fn_r" }, args, null, null);
 	}
-	public void blink_led(String coreId, int color, int rate, int iter) {
+	public void blinkLed(String coreId, int color, int rate, int iter) {
 		Bundle args = new Bundle();
 		args.putString("params",  "b_led," + color + "," + rate + "," + iter);
 		SimpleSparkApiService.post(ctx, new String[] { "devices", coreId, "fn_r" }, args, null, null);

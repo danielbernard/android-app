@@ -38,7 +38,7 @@ public class EesdFragment  extends BaseFragment {
 //		Button button = (Button) findViewById(R.id.button_id); 
 //		button.setOnClickListener(new View.OnClickListener() {
 //			public void onClick(View view) {
-//				api.toggle_activation(device.id);
+//				api.toggleActivation(device.id);
 //			}
 //		});
 	}
