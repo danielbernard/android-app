@@ -316,6 +316,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		}
 	}
 	
+	//Our Janky Method. It works!
 	public void eesdButton(View view) {
 		api.toggleActivation(deviceById.id);
 		Log.d("button","BUTTON!");
