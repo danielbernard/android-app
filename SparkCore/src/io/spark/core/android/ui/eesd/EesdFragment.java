@@ -1,41 +1,72 @@
 package io.spark.core.android.ui.eesd;
 
-import org.solemnsilence.util.TLog;
-
 import io.spark.core.android.R;
-import io.spark.core.android.app.DeviceState;
 import io.spark.core.android.cloud.api.Device;
 import io.spark.core.android.ui.BaseFragment;
-import io.spark.core.android.ui.tinker.Pin;
-import io.spark.core.android.ui.tinker.PinAction;
-import io.spark.core.android.ui.util.NamingHelper;
-import io.spark.core.android.ui.util.Ui;
-import android.app.AlertDialog;
-import android.app.Fragment;
+import io.spark.core.android.ui.corelist.CoreListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 
-public class EesdFragment  extends BaseFragment implements OnClickListener {
+/**
+ * A fragment representing a single Core detail screen. This fragment is either
+ * contained in a {@link CoreListActivity} in two-pane mode (on tablets) or a
+ * {@link CoreDetailActivity} on handsets.
+ */
+public class EesdFragment  extends BaseFragment {
+
+	public EesdFragment() {
+	}
+	
+	public static final String ARG_DEVICE_ID = "ARG_DEVICE_ID";
+	
+	private Device device;
+	
+	public static EesdFragment newInstance(String deviceId) {
+		Bundle arguments = new Bundle();
+		arguments.putString(EesdFragment.ARG_DEVICE_ID, deviceId);
+		EesdFragment fragment = new EesdFragment();
+		return fragment;
+	}
+	
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+		
+//		Button button = (Button) findViewById(R.id.button_id); 
+//		button.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View view) {
+//				api.toggle_activation(device.id);
+//			}
+//		});
+	}
+
 
 	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.tinker, menu);
+		inflater.inflate(R.menu.core_row_overflow, menu);
 	}
+	
+//	public void eesdButton(View view) {
+//		api.toggle_activation(device.id);
+//		Log.d("button","BUTTON!");
+//	}
+	
+	
+	
+/*	@Override
+	public void onClick(View arg0) {
+		api.toggle_activation(device.id);
+		Log.d("onClick","onClick called");
+	}*/
 
 	@Override
 	public int getContentViewLayoutId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public static Fragment newInstance(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return R.layout.fragment_eesd;
 	}
 	
 }

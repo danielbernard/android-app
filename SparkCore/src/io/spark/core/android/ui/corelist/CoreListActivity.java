@@ -21,6 +21,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -28,7 +29,7 @@ import android.view.ViewTreeObserver;
 
 
 public class CoreListActivity extends BaseActivity implements CoreListFragment.Callbacks {
-
+	Device deviceById;
 	private static final TLog log = new TLog(CoreListActivity.class);
 
 
@@ -200,7 +201,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			return;
 		}
 
-		Device deviceById = DeviceState.getDeviceById(id);
+		deviceById = DeviceState.getDeviceById(id);
 		setCustomActionBarTitle(deviceById.name);
 
 		selectedItemId = id;
@@ -231,7 +232,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		Fragment eesdFrag = Ui.findFrag(this, R.id.eesd_container);
 
 		if (eesdFrag == null) {
-			log.v("Tinker fragment is null");
+			log.v("Eesd fragment is null");
 		}
 
 		if (slidingLayout.isSlideable()) {
@@ -254,9 +255,9 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 
 	private void panelClosed() {
 		Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(false);
-		Fragment tinkerFrag = Ui.findFrag(this, R.id.eesd_container);
-		if (tinkerFrag != null) {
-			tinkerFrag.setHasOptionsMenu(true);
+		Fragment eesdFragment = Ui.findFrag(this, R.id.eesd_container);
+		if (eesdFragment != null) {
+			eesdFragment.setHasOptionsMenu(true);
 		}
 
 		actionBar.setHomeButtonEnabled(true);
@@ -314,5 +315,9 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			}
 		}
 	}
-
+	
+	public void eesdButton(View view) {
+		api.toggle_activation(deviceById.id);
+		Log.d("button","BUTTON!");
+	}
 }
