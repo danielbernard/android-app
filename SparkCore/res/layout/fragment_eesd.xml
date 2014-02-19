@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/eesd_main"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    tools:context=".EesdActivity" >
+
+    <Button
+        android:id="@+id/button_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EESD" 
+        android:onClick="eesdButton"/>
+
+	<ImageView
+	    android:id="@+id/eesd_logo"
+	    android:layout_width="135dp"
+	    android:layout_height="wrap_content"
+	    android:layout_centerInParent="true"
+	    android:src="@drawable/tinker_logo_temp" />
+
+</LinearLayout>
