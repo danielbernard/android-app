@@ -6,8 +6,8 @@ import io.spark.core.android.app.DeviceState;
 import io.spark.core.android.cloud.api.Device;
 import io.spark.core.android.smartconfig.SmartConfigState;
 import io.spark.core.android.ui.BaseActivity;
+import io.spark.core.android.ui.eesd.EesdFragment;
 import io.spark.core.android.ui.smartconfig.SmartConfigActivity;
-import io.spark.core.android.ui.tinker.TinkerFragment;
 import io.spark.core.android.ui.util.Ui;
 
 import org.solemnsilence.util.TLog;
@@ -55,7 +55,6 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		// The below is to try to present the user with the "best"
 		// activity on launch, but still allowing them to return to the Core
 		// list.
-		// TODO: document further
 		Intent intentToSkipTo = null;
 		if (savedInstanceState != null) {
 			if (savedInstanceState.containsKey(STATE_SELECTED_DEVICE_ID)) {
@@ -207,7 +206,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		selectedItemId = id;
 		getFragmentManager()
 				.beginTransaction()
-				.replace(R.id.tinker_container, TinkerFragment.newInstance(id))
+				.replace(R.id.eesd_container, EesdFragment.newInstance(id))
 				.commit();
 
 		CoreListFragment listFrag = Ui.findFrag(this, R.id.core_list);
@@ -229,21 +228,21 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	}
 
 	private void panelOpened() {
-		Fragment tinkerFrag = Ui.findFrag(this, R.id.tinker_container);
+		Fragment eesdFrag = Ui.findFrag(this, R.id.eesd_container);
 
-		if (tinkerFrag == null) {
+		if (eesdFrag == null) {
 			log.v("Tinker fragment is null");
 		}
 
 		if (slidingLayout.isSlideable()) {
 			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
-			if (tinkerFrag != null) {
-				tinkerFrag.setHasOptionsMenu(false);
+			if (eesdFrag != null) {
+				eesdFrag.setHasOptionsMenu(false);
 			}
 		} else {
 			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
-			if (tinkerFrag != null) {
-				tinkerFrag.setHasOptionsMenu(true);
+			if (eesdFrag != null) {
+				eesdFrag.setHasOptionsMenu(true);
 			}
 		}
 
@@ -255,7 +254,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 
 	private void panelClosed() {
 		Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(false);
-		Fragment tinkerFrag = Ui.findFrag(this, R.id.tinker_container);
+		Fragment tinkerFrag = Ui.findFrag(this, R.id.eesd_container);
 		if (tinkerFrag != null) {
 			tinkerFrag.setHasOptionsMenu(true);
 		}

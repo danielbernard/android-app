@@ -106,6 +106,7 @@ int id custom_aes_key_checkbox 0x7f0b0026
 int id custom_aes_key_checkbox_image 0x7f0b0025
 int id custom_aes_key_text 0x7f0b0027
 int id eesd_button_toggle_activation 0x7f0b0015
+int id eesd_container 0x7f0b0004
 int id eesd_toggle_activation_main 0x7f0b0014
 int id email 0x7f0b0007
 int id fine_print 0x7f0b0000
@@ -148,7 +149,6 @@ int id tinker_button_color 0x7f0b0001
 int id tinker_button_digital_read 0x7f0b0049
 int id tinker_button_digital_write 0x7f0b004b
 int id tinker_button_toggle_activation 0x7f0b004c
-int id tinker_container 0x7f0b0004
 int id tinker_d0 0x7f0b0038
 int id tinker_d1 0x7f0b0037
 int id tinker_d2 0x7f0b0036

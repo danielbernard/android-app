@@ -156,6 +156,7 @@ containing a value of this type.
         public static final int custom_aes_key_checkbox_image=0x7f0b0025;
         public static final int custom_aes_key_text=0x7f0b0027;
         public static final int eesd_button_toggle_activation=0x7f0b0015;
+        public static final int eesd_container=0x7f0b0004;
         public static final int eesd_toggle_activation_main=0x7f0b0014;
         public static final int email=0x7f0b0007;
         public static final int fine_print=0x7f0b0000;
@@ -198,7 +199,6 @@ containing a value of this type.
         public static final int tinker_button_digital_read=0x7f0b0049;
         public static final int tinker_button_digital_write=0x7f0b004b;
         public static final int tinker_button_toggle_activation=0x7f0b004c;
-        public static final int tinker_container=0x7f0b0004;
         public static final int tinker_d0=0x7f0b0038;
         public static final int tinker_d1=0x7f0b0037;
         public static final int tinker_d2=0x7f0b0036;

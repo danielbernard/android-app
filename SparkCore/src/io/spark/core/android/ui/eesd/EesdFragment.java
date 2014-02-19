@@ -11,6 +11,7 @@ import io.spark.core.android.ui.tinker.PinAction;
 import io.spark.core.android.ui.util.NamingHelper;
 import io.spark.core.android.ui.util.Ui;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +31,11 @@ public class EesdFragment  extends BaseFragment implements OnClickListener {
 	public int getContentViewLayoutId() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public static Fragment newInstance(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

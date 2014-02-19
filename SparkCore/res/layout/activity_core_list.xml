@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_core_list" />
 
     <FrameLayout
-        android:id="@+id/tinker_container"
+        android:id="@+id/eesd_container"
         android:layout_width="450dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
