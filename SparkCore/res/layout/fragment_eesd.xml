@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/eesd_main"
     android:layout_width="wrap_content"
@@ -7,18 +8,121 @@
     android:gravity="center"
     tools:context=".EesdActivity" >
 
+    <ImageView
+        android:id="@+id/eesd_logo"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tinker_logo_temp" />
+
     <Button
         android:id="@+id/button_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EESD" 
-        android:onClick="eesdButton"/>
-
-	<ImageView
-	    android:id="@+id/eesd_logo"
-	    android:layout_width="135dp"
-	    android:layout_height="wrap_content"
-	    android:layout_centerInParent="true"
-	    android:src="@drawable/tinker_logo_temp" />
+        android:onClick="eesdButton"
+        android:text="EESD" />
 
 </LinearLayout>
+-->
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+        <Button
+            android:id="@+id/button_toggle_activation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:onClick="toggleActivation"
+            android:text="Turn On/Off" />
+
+        <Button
+            android:id="@+id/button_set_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_toggle_activation"
+            android:onClick="setRgbl"
+            android:text="Set Color" />
+        
+		<TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_set_color"
+            android:text="Colors (Red, Green, Blue)"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <SeekBar
+            android:id="@+id/seekBar_g"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/seekBar_r" />
+
+        <SeekBar
+            android:id="@+id/seekBar_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/seekBar_g" />
+
+        <SeekBar
+            android:id="@+id/seekBar_r"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_toggle_activation"
+            android:layout_toRightOf="@+id/button_set_color"
+            android:onClick="rainbow"
+            android:text="Rainbow" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button1"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_toRightOf="@+id/button1"
+            android:onClick="blinkLed"
+            android:text="Blink LED" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/seekBar_b"
+            android:text="Blink Rate"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/seekBar1"
+            android:text="Blink Iterations"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3" />
+
+    </RelativeLayout>
