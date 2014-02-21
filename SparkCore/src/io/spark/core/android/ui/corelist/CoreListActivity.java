@@ -324,15 +324,18 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	public void setRgbl(View view) {
 		String color = "FF00FF";
 		api.setRgbl(deviceById.id, color);
+		Log.d("button","setRgbl called");
 	}
 	public void rainbow(View view) {
 		api.rainbow(deviceById.id);
+		Log.d("button","rainbow called");
 	}
 	public void blinkLed(View view) {
 		String color = "00FF00";
 		int rate = 0200;
 		int iter = 5; 
 		api.blinkLed(deviceById.id, color, rate, iter);
+		Log.d("button","blinkLed called");
 	}
 
 }
