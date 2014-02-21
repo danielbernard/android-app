@@ -5,10 +5,10 @@ import io.spark.core.android.cloud.api.Device;
 import io.spark.core.android.ui.BaseFragment;
 import io.spark.core.android.ui.corelist.CoreListActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
+import android.widget.SeekBar;
+import android.widget.Toast;
 
 /**
  * A fragment representing a single Core detail screen. This fragment is either
@@ -17,6 +17,7 @@ import android.view.View;
  */
 public class EesdFragment  extends BaseFragment {
 
+	int r,g,b;
 	public EesdFragment() {
 	}
 	
@@ -41,6 +42,7 @@ public class EesdFragment  extends BaseFragment {
 //				api.toggleActivation(device.id);
 //			}
 //		});
+
 	}
 
 
@@ -69,4 +71,5 @@ public class EesdFragment  extends BaseFragment {
 		return R.layout.fragment_eesd;
 	}
 	
+
 }

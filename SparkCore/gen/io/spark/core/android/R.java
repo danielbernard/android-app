@@ -178,8 +178,8 @@ containing a value of this type.
         public static final int seekBar1=0x7f0b0020;
         public static final int seekBar2=0x7f0b0022;
         public static final int seekBar_b=0x7f0b001c;
-        public static final int seekBar_g=0x7f0b001a;
-        public static final int seekBar_r=0x7f0b001b;
+        public static final int seekBar_g=0x7f0b001b;
+        public static final int seekBar_r=0x7f0b001a;
         public static final int sign_up_button=0x7f0b000a;
         public static final int sliding_pane_layout=0x7f0b0002;
         public static final int smart_config_frag=0x7f0b0010;
