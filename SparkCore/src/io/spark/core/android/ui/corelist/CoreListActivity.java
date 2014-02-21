@@ -332,7 +332,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	}
 	public void blinkLed(View view) {
 		String color = "00FF00";
-		int rate = 0200;
+		String rate = "1000";
 		int iter = 5; 
 		api.blinkLed(deviceById.id, color, rate, iter);
 		Log.d("button","blinkLed called");

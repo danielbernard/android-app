@@ -264,7 +264,7 @@ public class ApiFacade {
 		args.putString("params", "rainbow");
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId, "fn_r" }, args, null, null);
 	}
-	public void blinkLed(String coreId, String color, int rate, int iter) {
+	public void blinkLed(String coreId, String color, String rate, int iter) {
 		Bundle args = new Bundle();
 		args.putString("params",  "b_led," + color + "," + rate + "," + iter);
 		SimpleSparkApiService.post(ctx, new String[] { "devices", coreId, "fn_r" }, args, null, null);
