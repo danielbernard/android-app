@@ -13,7 +13,7 @@ import android.widget.Toast;
 /**
  * A fragment representing a single Core detail screen. This fragment is either
  * contained in a {@link CoreListActivity} in two-pane mode (on tablets) or a
- * {@link CoreDetailActivity} on handsets.
+ *
  */
 public class EesdFragment  extends BaseFragment {
 
