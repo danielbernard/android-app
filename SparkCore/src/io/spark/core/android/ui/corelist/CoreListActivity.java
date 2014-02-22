@@ -48,9 +48,9 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	private SlidingPaneLayout slidingLayout;
 	private String selectedItemId;
 
-	public int r = 0;
-	public int g = 0;
-	public int b = 0;
+	public int red = 0;
+	public int green = 0;
+	public int blue = 0;
 	
 	
 	
@@ -62,6 +62,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		SeekBar seekBarR = (SeekBar) findViewById(R.id.seekBar_r);
 		SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
 		SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
+		
 		// Crashes on next line, NullPointerException
 		seekBarR.setOnSeekBarChangeListener(new eesdSeekBarRListener());
 		seekBarG.setOnSeekBarChangeListener(new eesdSeekBarGListener());
@@ -357,60 +358,86 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		Log.d("button","blinkLed called");
 	}
 
-	// Below methods are for setting R, G and B
+	//Get/Set Red
 	public void setR(int newR) {
-		r = newR;
+		this.red = newR;
 	}
+	
+	public int getR(){
+		return this.red;
+	}
+	
+	//Get/Set Green 
 	public void setG(int newG) {
-		g = newG;
+		this.green = newG;
 	}
+	
+	public int getG(){
+		return this.green;
+	}
+	
+	//Get/Set Blue
 	public void setB(int newB) {
-		b = newB;
+		this.blue = newB;
 	}
+	
+	public int getB(){
+		return this.blue;
+	}
+	
 	// Below methods are the listeners for setting and changing R, G, and B based on sliders
 	private class eesdSeekBarRListener implements SeekBar.OnSeekBarChangeListener {
 		@Override
-		public void onProgressChanged(SeekBar seekBar, int progress,
-				boolean fromUser) {
-			r = progress;
-			CoreListActivity.this.setR(r);
+		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
+			if(fromUser = true){
+				CoreListActivity.this.setR(progress);			
+			}
 		}
+		
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
 		}
+		
+		
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			Toast.makeText(CoreListActivity.this, "Red: "+ r, Toast.LENGTH_SHORT).show();
+			Toast.makeText(CoreListActivity.this, "Red: "+ CoreListActivity.this.getR(), Toast.LENGTH_SHORT).show();
 		}
 	}
+	
 	private class eesdSeekBarGListener implements SeekBar.OnSeekBarChangeListener {
 		@Override
-		public void onProgressChanged(SeekBar seekBar, int progress,
-				boolean fromUser) {
-			g = progress;
-			CoreListActivity.this.setG(g);
+		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+			if(fromUser = true){
+				CoreListActivity.this.setG(progress);
+			}
 		}
+		
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
 		}
+		
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			Toast.makeText(CoreListActivity.this, "Green: "+ g, Toast.LENGTH_SHORT).show();
+			Toast.makeText(CoreListActivity.this, "Green: "+ CoreListActivity.this.getG(), Toast.LENGTH_SHORT).show();
 		}
 	}
+	
 	private class eesdSeekBarBListener implements SeekBar.OnSeekBarChangeListener {
 		@Override
-		public void onProgressChanged(SeekBar seekBar, int progress,
-				boolean fromUser) {
-			b = progress;
-			CoreListActivity.this.setB(b);
+		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+			if(fromUser = true){
+				CoreListActivity.this.setB(progress);
+			}
 		}
+		
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
 		}
+		
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			Toast.makeText(CoreListActivity.this, "Blue: "+ b, Toast.LENGTH_SHORT).show();
+			Toast.makeText(CoreListActivity.this, "Blue: "+ CoreListActivity.this.getB(), Toast.LENGTH_SHORT).show();
 		}
 	}
 }
