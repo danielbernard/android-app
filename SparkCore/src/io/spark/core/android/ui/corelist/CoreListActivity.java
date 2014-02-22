@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
 
@@ -64,9 +65,9 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
 		
 		// Crashes on next line, NullPointerException
-		seekBarR.setOnSeekBarChangeListener(new eesdSeekBarRListener());
-		seekBarG.setOnSeekBarChangeListener(new eesdSeekBarGListener());
-		seekBarB.setOnSeekBarChangeListener(new eesdSeekBarBListener());
+		seekBarR.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarRListener()));
+		seekBarG.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarGListener()));
+		seekBarB.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarBListener()));
 		
 		String deviceIdToSelect = null;
 		boolean openPane = true;
