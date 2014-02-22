@@ -387,6 +387,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	
 	// Below methods are the listeners for setting and changing R, G, and B based on sliders
 	private class eesdSeekBarRListener implements SeekBar.OnSeekBarChangeListener {
+
+		//Constructor
+		public eesdSeekBarRListener(){
+			
+		}
+		
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
 			if(fromUser = true){
@@ -406,6 +412,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	}
 	
 	private class eesdSeekBarGListener implements SeekBar.OnSeekBarChangeListener {
+		
+		//Constrcutor
+		public eesdSeekBarGListener(){
+			
+		}
+		
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 			if(fromUser = true){
@@ -424,6 +436,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	}
 	
 	private class eesdSeekBarBListener implements SeekBar.OnSeekBarChangeListener {
+		
+		//Constructor
+		public eesdSeekBarBListener(){
+			
+		}
+		
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 			if(fromUser = true){
