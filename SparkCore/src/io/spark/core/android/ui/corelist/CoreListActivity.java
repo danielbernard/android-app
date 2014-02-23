@@ -60,6 +60,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		super.onCreate(savedInstanceState);
 		
 		// Add SeekBars
+		/*
 		SeekBar seekBarR = (SeekBar) findViewById(R.id.seekBar_r);
 		SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
 		SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
@@ -68,6 +69,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		seekBarR.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarRListener()));
 		seekBarG.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarGListener()));
 		seekBarB.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarBListener()));
+		*/
 		
 		String deviceIdToSelect = null;
 		boolean openPane = true;
