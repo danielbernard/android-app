@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 
 
@@ -62,20 +63,22 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		//SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
 		//SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
 		
-		// Crashes on next line, NullPointerException
-		seekBarR.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+		OnSeekBarChangeListener rlisten = new OnSeekBarChangeListener(){
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
-//					CoreListActivity.this.setR(progress);
+//				CoreListActivity.this.setR(progress);
 			}
-			
+		
 			public void onStartTrackingTouch(SeekBar seekBar) {
 			}
-			
+		
 			public void onStopTrackingTouch(SeekBar seekBar) {
-	
+
 			}
-			
-		});
+		
+			};
+		
+		// Crashes on next line, NullPointerException
+//		seekBarR.setOnSeekBarChangeListener(rlisten);
 		
 		//seekBarG.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarGListener()));
 		//seekBarB.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarBListener()));
