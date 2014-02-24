@@ -44,7 +44,7 @@ public class EesdFragment  extends BaseFragment {
 		// Add SeekBars
 		
 		//Shitty code
-		seekBarR = (SeekBar)getResources().getResourceName(R.id.seekBar_r);
+		//seekBarR = (SeekBar)getResources().getResourceName(R.id.seekBar_r);
 		seekBarR.setMax(255);
 		//SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
 		//SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
