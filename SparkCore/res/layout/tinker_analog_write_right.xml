@@ -15,7 +15,7 @@
         android:text="0"
         android:textSize="@dimen/analog_write_text_value_size" />
 
-    <io.spark.core.android.ui.tinker.ReversedSeekBar
+    <io.wireless.ball.android.ui.tinker.ReversedSeekBar
         android:id="@+id/tinker_analog_write_seekbar"
         style="@style/TinkerSeekBar"
         android:layout_gravity="center_vertical|right"

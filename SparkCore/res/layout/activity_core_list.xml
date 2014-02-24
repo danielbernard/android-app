@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/core_list"
-        android:name="io.spark.core.android.ui.corelist.CoreListFragment"
+        android:name="io.wireless.ball.android.ui.corelist.CoreListFragment"
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
