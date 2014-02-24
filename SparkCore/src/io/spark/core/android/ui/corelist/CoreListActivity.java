@@ -416,13 +416,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		return this.blue;
 	}
 	
-<<<<<<< HEAD
-	/*
-	
-	// Below methods are the listeners for setting and changing R, G, and B based on sliders
-=======
+
 /*	// Below methods are the listeners for setting and changing R, G, and B based on sliders
->>>>>>> master
 	private class eesdSeekBarRListener implements SeekBar.OnSeekBarChangeListener {
 
 		//Constructor
@@ -494,12 +489,9 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		public void onStopTrackingTouch(SeekBar seekBar) {
 			Toast.makeText(CoreListActivity.this, "Blue: "+ CoreListActivity.this.getB(), Toast.LENGTH_SHORT).show();
 		}
-<<<<<<< HEAD
 	}
 	*/
-=======
-	}*/
->>>>>>> master
+
 }
 
 
