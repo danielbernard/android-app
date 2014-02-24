@@ -45,7 +45,7 @@ public class EesdFragment  extends BaseFragment {
 		
 		//Shitty code
 		//seekBarR = (SeekBar)getResources().getResourceName(R.id.seekBar_r);
-		seekBarR.setMax(255);
+		//seekBarR.setMax(255);
 		//SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
 		//SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
 		
@@ -71,7 +71,7 @@ public class EesdFragment  extends BaseFragment {
 		
 		
 		// Crashes on next line, NullPointerException
-		seekBarR.setOnSeekBarChangeListener(rlisten);
+		//seekBarR.setOnSeekBarChangeListener(rlisten);
 		
 //		Button button = (Button) findViewById(R.id.button_id); 
 //		button.setOnClickListener(new View.OnClickListener() {

@@ -57,7 +57,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-/*		setContentView(R.layout.fragment_eesd);
+		setContentView(R.layout.activity_core_list);
+		//setContentView(R.layout.fragment_eesd);
 		
 		// Add SeekBars
 		
@@ -71,7 +72,11 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
 				setR(progress);
+				String color = Integer.toHexString(seekBarR.getProgress()) + "AAAA";
 				Log.d("Listener", "Progress is " + Integer.toString(progress));
+				Log.d("Listener","setRgbl color " + color);
+				Log.d("Listener","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
+				api.setRgbl(deviceById.id, color);
 			}
 		
 			@Override
@@ -88,12 +93,10 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		
 		
 		// Crashes on next line, NullPointerException
-		seekBarR.setOnSeekBarChangeListener(rlisten);*/
+		seekBarR.setOnSeekBarChangeListener(rlisten);
 		
 		//seekBarG.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarGListener()));
 		//seekBarB.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarBListener()));
-		
-		setContentView(R.layout.activity_core_list);
 		
 		String deviceIdToSelect = null;
 		boolean openPane = true;
@@ -368,12 +371,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		Log.d("button","toggleActivation called");
 	}
 	
-/*	public void setRgbl(View view) {
+	public void setRgbl(View view) {
 		String color = Integer.toHexString(seekBarR.getProgress()) + "AAAA";
 		api.setRgbl(deviceById.id, color);
 		Log.d("button","setRgbl color " + color);
 		Log.d("button","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
-	}*/
+	}
 	
 	public void rainbow(View view) {
 		api.rainbow(deviceById.id);
