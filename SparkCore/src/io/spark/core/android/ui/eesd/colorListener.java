@@ -1,6 +1,7 @@
 package io.spark.core.android.ui.eesd;
 
 import android.R;
+import android.util.Log;
 import android.widget.SeekBar;
 
 public class colorListener implements SeekBar.OnSeekBarChangeListener {
@@ -28,18 +29,19 @@ public class colorListener implements SeekBar.OnSeekBarChangeListener {
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
 		if(fromUser = true){
-			colorListener.this.setColor(progress);
+			Log.d("Listener", "Progress is 1");
 		}
 	}
 	
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
+		Log.d("Listener", "Progress is 2");
 	}
 	
 	
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		//Toast.makeText(CoreListActivity.this, "Red: "+ CoreListActivity.this.getR(), Toast.LENGTH_SHORT).show();
+		Log.d("Listener", "Progress is 3");
 	}
 
 }

@@ -5,10 +5,11 @@ import io.spark.core.android.cloud.api.Device;
 import io.spark.core.android.ui.BaseFragment;
 import io.spark.core.android.ui.corelist.CoreListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 /**
  * A fragment representing a single Core detail screen. This fragment is either
@@ -18,6 +19,7 @@ import android.widget.Toast;
 public class EesdFragment  extends BaseFragment {
 
 	int r,g,b;
+	SeekBar seekBarR;
 	public EesdFragment() {
 	}
 	
@@ -35,6 +37,41 @@ public class EesdFragment  extends BaseFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		
+		
+		//setContentView(R.layout.fragment_eesd);
+		
+		// Add SeekBars
+		
+		//Shitty code
+		seekBarR = (SeekBar)getResources().getResourceName(R.id.seekBar_r);
+		seekBarR.setMax(255);
+		//SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
+		//SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
+		
+		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
+			
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
+				r = progress;
+				Log.d("Listener", "Progress is " + Integer.toString(progress));
+			}
+		
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				Log.d("Listener", "Progress is start ");
+			}
+		
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				Log.d("Listener", "Progress is stop ");
+			}
+		
+		};
+		
+		
+		// Crashes on next line, NullPointerException
+		seekBarR.setOnSeekBarChangeListener(rlisten);
 		
 //		Button button = (Button) findViewById(R.id.button_id); 
 //		button.setOnClickListener(new View.OnClickListener() {
@@ -71,5 +108,11 @@ public class EesdFragment  extends BaseFragment {
 		return R.layout.fragment_eesd;
 	}
 	
+	public void setRgbl(View view) {
+		String color = Integer.toHexString(r) + "AAAA";
+		api.setRgbl(CoreListActivity.deviceById.id, color);
+		Log.d("button","setRgbl color " + color);
+		Log.d("button","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
+	}
 
 }

@@ -31,7 +31,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 
 public class CoreListActivity extends BaseActivity implements CoreListFragment.Callbacks {
-	Device deviceById;
+	public static Device deviceById;
 	private static final TLog log = new TLog(CoreListActivity.class);
 
 
@@ -48,41 +48,52 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	private SlidingPaneLayout slidingLayout;
 	private String selectedItemId;
 
-	public int red = 0;
+	public int red = 50;
 	public int green = 0;
 	public int blue = 0;
-	
+	public SeekBar seekBarR;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+/*		setContentView(R.layout.fragment_eesd);
+		
 		// Add SeekBars
 		
-		SeekBar seekBarR = (SeekBar)findViewById(R.id.seekBar_r);
+		seekBarR = (SeekBar)findViewById(R.id.seekBar_r);
+		seekBarR.setMax(255);
 		//SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
 		//SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
 		
-		OnSeekBarChangeListener rlisten = new OnSeekBarChangeListener(){
+		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
+			
+			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
-//				CoreListActivity.this.setR(progress);
+				setR(progress);
+				Log.d("Listener", "Progress is " + Integer.toString(progress));
 			}
 		
+			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
+				Log.d("Listener", "Progress is start ");
 			}
 		
+			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-
+				Log.d("Listener", "Progress is stop ");
 			}
 		
-			};
+		};
+		
 		
 		// Crashes on next line, NullPointerException
-//		seekBarR.setOnSeekBarChangeListener(rlisten);
+		seekBarR.setOnSeekBarChangeListener(rlisten);*/
 		
 		//seekBarG.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarGListener()));
 		//seekBarB.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarBListener()));
 		
+		setContentView(R.layout.activity_core_list);
 		
 		String deviceIdToSelect = null;
 		boolean openPane = true;
@@ -127,7 +138,6 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			return;
 		}
 
-		setContentView(R.layout.activity_core_list);
 
 		actionBar = getActionBar();
 
@@ -351,16 +361,20 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		}
 	}
 	
+	
 	//Our Janky Method. It works!
 	public void toggleActivation(View view) {
 		api.toggleActivation(deviceById.id);
 		Log.d("button","toggleActivation called");
 	}
-	public void setRgbl(View view) {
-		String color = "FF00FF";
+	
+/*	public void setRgbl(View view) {
+		String color = Integer.toHexString(seekBarR.getProgress()) + "AAAA";
 		api.setRgbl(deviceById.id, color);
-		Log.d("button","setRgbl called");
-	}
+		Log.d("button","setRgbl color " + color);
+		Log.d("button","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
+	}*/
+	
 	public void rainbow(View view) {
 		api.rainbow(deviceById.id);
 		Log.d("button","rainbow called");
