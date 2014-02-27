@@ -25,9 +25,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-
 
 
 public class CoreListActivity extends BaseActivity implements CoreListFragment.Callbacks {
@@ -58,14 +57,11 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_core_list);
-		//setContentView(R.layout.fragment_eesd);
 		
 		// Add SeekBars
 		
 		seekBarR = (SeekBar)findViewById(R.id.seekBar_r);
 		seekBarR.setMax(255);
-		//SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
-		//SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
 		
 		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
 			
@@ -76,7 +72,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 				Log.d("Listener", "Progress is " + Integer.toString(progress));
 				Log.d("Listener","setRgbl color " + color);
 				Log.d("Listener","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
-				api.setRgbl(deviceById.id, color);
+				//Core can't handle update at every new progress
+				//api.setRgbl(deviceById.id, color);
 			}
 		
 			@Override
@@ -91,12 +88,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		
 		};
 		
-		
-		// Crashes on next line, NullPointerException
 		seekBarR.setOnSeekBarChangeListener(rlisten);
-		
-		//seekBarG.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarGListener()));
-		//seekBarB.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)(new eesdSeekBarBListener()));
 		
 		String deviceIdToSelect = null;
 		boolean openPane = true;
@@ -162,6 +154,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		}
 		
 	}
+	
+
 
 	@Override
 	protected void onNewIntent(Intent intent) {
@@ -369,6 +363,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	public void toggleActivation(View view) {
 		api.toggleActivation(deviceById.id);
 		Log.d("button","toggleActivation called");
+	}
+	
+	public void grabColor(View view){
+		EditText editText = (EditText)findViewById(R.id.edittext_grab_color);
+		String color = editText.getText().toString();
+		api.setRgbl(deviceById.id, color);
 	}
 	
 	public void setRgbl(View view) {

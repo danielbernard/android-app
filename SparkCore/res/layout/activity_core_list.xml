@@ -25,7 +25,6 @@
             android:id="@+id/button_toggle_activation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
             android:onClick="toggleActivation"
             android:text="Turn On/Off" />
         
@@ -35,6 +34,18 @@
             android:layout_height="wrap_content"
             android:onClick="setRgbl"
             android:text="Set Color" />
+        <Button
+            android:id="@+id/button_test_set_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="grabColor"
+            android:text="Grab Color" />
+        <EditText 
+            android:id="@+id/edittext_grab_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="6"
+            />
         
 		<TextView
             android:id="@+id/textView1"
@@ -47,17 +58,7 @@
             android:id="@+id/seekBar_r"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />		
-        <SeekBar
-            android:id="@+id/seekBar_g"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="255" />
-        <SeekBar
-            android:id="@+id/seekBar_b"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="255" />
-
+       
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"

@@ -99,6 +99,7 @@ int id already_have_account 0x7f0b0016
 int id button1 0x7f0b000b
 int id button2 0x7f0b000c
 int id button_set_color 0x7f0b0006
+int id button_test_set_color 0x7f0b0007
 int id button_toggle_activation 0x7f0b0005
 int id connect 0x7f0b0028
 int id connect_button 0x7f0b0029
@@ -109,6 +110,7 @@ int id cores_title 0x7f0b001c
 int id custom_aes_key_checkbox 0x7f0b002c
 int id custom_aes_key_checkbox_image 0x7f0b002b
 int id custom_aes_key_text 0x7f0b002d
+int id edittext_grab_color 0x7f0b0008
 int id eesd_container 0x7f0b0004
 int id email 0x7f0b000f
 int id fine_print 0x7f0b0000
@@ -125,16 +127,14 @@ int id password 0x7f0b0010
 int id progressContainer 0x7f0b001d
 int id progress_indicator 0x7f0b0013
 int id scroll_area 0x7f0b000d
-int id seekBar_b 0x7f0b000a
-int id seekBar_g 0x7f0b0009
-int id seekBar_r 0x7f0b0008
+int id seekBar_r 0x7f0b000a
 int id sign_up_button 0x7f0b0012
 int id sliding_pane_layout 0x7f0b0002
 int id smart_config_frag 0x7f0b0018
 int id spark_logo 0x7f0b000e
 int id ssid_label 0x7f0b0024
 int id ssid_text 0x7f0b0025
-int id textView1 0x7f0b0007
+int id textView1 0x7f0b0009
 int id tinker_a0 0x7f0b0036
 int id tinker_a1 0x7f0b0035
 int id tinker_a2 0x7f0b0034

@@ -149,6 +149,7 @@ containing a value of this type.
         public static final int button1=0x7f0b000b;
         public static final int button2=0x7f0b000c;
         public static final int button_set_color=0x7f0b0006;
+        public static final int button_test_set_color=0x7f0b0007;
         public static final int button_toggle_activation=0x7f0b0005;
         public static final int connect=0x7f0b0028;
         public static final int connect_button=0x7f0b0029;
@@ -159,6 +160,7 @@ containing a value of this type.
         public static final int custom_aes_key_checkbox=0x7f0b002c;
         public static final int custom_aes_key_checkbox_image=0x7f0b002b;
         public static final int custom_aes_key_text=0x7f0b002d;
+        public static final int edittext_grab_color=0x7f0b0008;
         public static final int eesd_container=0x7f0b0004;
         public static final int email=0x7f0b000f;
         public static final int fine_print=0x7f0b0000;
@@ -175,16 +177,14 @@ containing a value of this type.
         public static final int progressContainer=0x7f0b001d;
         public static final int progress_indicator=0x7f0b0013;
         public static final int scroll_area=0x7f0b000d;
-        public static final int seekBar_b=0x7f0b000a;
-        public static final int seekBar_g=0x7f0b0009;
-        public static final int seekBar_r=0x7f0b0008;
+        public static final int seekBar_r=0x7f0b000a;
         public static final int sign_up_button=0x7f0b0012;
         public static final int sliding_pane_layout=0x7f0b0002;
         public static final int smart_config_frag=0x7f0b0018;
         public static final int spark_logo=0x7f0b000e;
         public static final int ssid_label=0x7f0b0024;
         public static final int ssid_text=0x7f0b0025;
-        public static final int textView1=0x7f0b0007;
+        public static final int textView1=0x7f0b0009;
         public static final int tinker_a0=0x7f0b0036;
         public static final int tinker_a1=0x7f0b0035;
         public static final int tinker_a2=0x7f0b0034;
