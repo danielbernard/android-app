@@ -61,17 +61,17 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		// Add SeekBars
 		
 		seekBarR = (SeekBar)findViewById(R.id.seekBar_r);
-		seekBarR.setMax(255);
+		seekBarR.setMax(32);
 		
 		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
 			
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
 				setR(progress);
-				String color = Integer.toHexString(seekBarR.getProgress()) + "AAAA";
-				Log.d("Listener", "Progress is " + Integer.toString(progress));
-				Log.d("Listener","setRgbl color " + color);
-				Log.d("Listener","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
+				String color = Integer.toHexString(seekBarR.getProgress()) + "0000";
+				//Log.d("Listener", "Progress is " + Integer.toString(progress));
+				//Log.d("Listener","setRgbl color " + color);
+				//Log.d("Listener","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
 				//Core can't handle update at every new progress
 				//api.setRgbl(deviceById.id, color);
 			}
@@ -372,10 +372,34 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	}
 	
 	public void setRgbl(View view) {
-		String color = Integer.toHexString(seekBarR.getProgress()) + "AAAA";
+		double progress = seekBarR.getProgress();
+		int red = (int) (Math.sin(.2 * progress) * 127 + 128);
+		int green = (int) (Math.sin(.2 * progress + 2.094) * 127 + 128);
+		int blue = (int) (Math.sin(.2 * progress + 4.187) * 127 + 128);
+		
+		String rColor;
+		String gColor;
+		String bColor;
+		
+		rColor = intToHexString(red);
+		gColor = intToHexString(green);
+		bColor = intToHexString(blue);
+		String color = rColor + gColor + bColor;
 		api.setRgbl(deviceById.id, color);
-		Log.d("button","setRgbl color " + color);
+		
+		Log.d("button","setRgbl color " + rColor + " " + gColor + " " + bColor);
 		Log.d("button","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
+	}
+	
+	//properly converts an int to a hex string of length 2
+	public String intToHexString(int color){
+		String colorString;
+		if (color < 15){
+			colorString = "0" + Integer.toHexString(color);
+		} else {
+			colorString = Integer.toHexString(color);
+		}
+		return colorString;
 	}
 	
 	public void rainbow(View view) {
