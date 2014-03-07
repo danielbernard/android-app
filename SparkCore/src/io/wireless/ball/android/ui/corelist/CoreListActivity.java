@@ -365,11 +365,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		Log.d("button","toggleActivation called");
 	}
 	
-	public void grabColor(View view){
-		EditText editText = (EditText)findViewById(R.id.edittext_grab_color);
-		String color = editText.getText().toString();
-		api.setRgbl(deviceById.id, color);
-	}
+	//Tester Button
+//	public void grabColor(View view){
+//		EditText editText = (EditText)findViewById(R.id.edittext_grab_color);
+//		String color = editText.getText().toString();
+//		api.setRgbl(deviceById.id, color);
+//	}
 	
 	public void setRgbl(View view) {
 		double progress = seekBarR.getProgress();

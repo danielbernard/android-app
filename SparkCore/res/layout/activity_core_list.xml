@@ -34,18 +34,20 @@
             android:layout_height="wrap_content"
             android:onClick="setRgbl"
             android:text="Set Color" />
-        <Button
+       <!--  <Button
             android:id="@+id/button_test_set_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="grabColor"
             android:text="Grab Color" />
+             
         <EditText 
             android:id="@+id/edittext_grab_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLength="6"
             />
+         -->
         
 		<TextView
             android:id="@+id/textView1"
