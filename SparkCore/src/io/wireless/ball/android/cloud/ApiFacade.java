@@ -207,48 +207,6 @@ public class ApiFacade {
 				args, receiver, null);
 	}
 	
-	// Senior Design Functions
-/*	public void toggle_activation(String coreId, String pinId, int oldValue) {
-		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
-				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
-				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue);
-		Bundle args = new Bundle();
-		args.putString("params", "t_act");
-		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
-				args, receiver, null);
-	}
-	public void set_rgbl(String coreName, String pinId, int oldValue, int newValue) {
-		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
-				TinkerResponse.REQUEST_TYPE_WRITE, coreName, pinId,
-				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue, newValue);
-		Bundle args = new Bundle();
-		args.putString("params",  "s_rgbl," + newValue);
-		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
-				args, receiver, null);
-	}
-	public void rainbow(String coreId, String pinId, int oldValue) {
-		TinkerReadValueReceiver receiver = new TinkerReadValueReceiver(handler,
-				TinkerResponse.REQUEST_TYPE_READ, coreId, pinId,
-				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue);
-		Bundle args = new Bundle();
-		args.putString("params", "rainbow");
-		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, 
-				args, receiver, null);
-	}
-
-	public void blink_led(String coreName, String pinId, int oldValue, 
-			int color, int rate, int iter) {
-		TinkerWriteValueReceiver receiver = new TinkerWriteValueReceiver(handler,
-				TinkerResponse.REQUEST_TYPE_WRITE, coreName, pinId,
-				TinkerResponse.RESPONSE_TYPE_ANALOG, oldValue, color);
-		Bundle args = new Bundle();
-		args.putString("params",  "b_led," + color + "," + rate + "," + iter);
-		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreName,  "fn_r" }, 
-				args, receiver, null);
-	}
-	
-	*/
-	
 	public void toggleActivation(String coreId) {
 		Bundle args = new Bundle();
 		args.putString("params", "t_act");
@@ -269,10 +227,12 @@ public class ApiFacade {
 		args.putString("params",  "b_led," + color + "," + rate + "," + iter);
 		SimpleSparkApiService.post(ctx, new String[] { "devices", coreId, "fn_r" }, args, null, null);
 	}
+	public void saveColor(String coreId) {
+		Bundle args = new Bundle();
+		args.putString("params", "save_color");
+		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId, "fn_r" }, args, null, null);
+	}
 
-	
-
-	// Testing .gitignore
 	
 	/**
 	 * This class is just to give a more clear, semantic interface to
