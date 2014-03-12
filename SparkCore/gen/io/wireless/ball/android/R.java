@@ -14,9 +14,117 @@ public final class R {
         public static final int pin_background_start=0x7f040002;
     }
     public static final class array {
-        public static final int core_colors=0x7f090000;
+        public static final int core_colors=0x7f0a0000;
     }
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bar_length=0x7f010007;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bar_orientation_horizontal=0x7f01000a;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bar_pointer_halo_radius=0x7f010009;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bar_pointer_radius=0x7f010008;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bar_thickness=0x7f010006;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int color_center_halo_radius=0x7f010003;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int color_center_radius=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int color_pointer_halo_radius=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int color_pointer_radius=0x7f010004;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int color_wheel_radius=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int color_wheel_thickness=0x7f010001;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -24,62 +132,76 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int font=0x7f010000;
+        public static final int font=0x7f01000b;
     }
     public static final class bool {
-        public static final int lock_to_portrait=0x7f060001;
-        public static final int use_staging=0x7f060000;
+        public static final int lock_to_portrait=0x7f070001;
+        public static final int use_staging=0x7f070000;
     }
     public static final class color {
-        public static final int alizarin=0x7f080003;
-        public static final int cores_list_bg=0x7f080006;
-        public static final int cores_list_darker=0x7f080008;
-        public static final int cores_list_text=0x7f080007;
+        public static final int alizarin=0x7f090003;
+        public static final int cores_list_bg=0x7f090006;
+        public static final int cores_list_darker=0x7f090008;
+        public static final int cores_list_text=0x7f090007;
         /**  named colors from app spec 
          */
-        public static final int cyan=0x7f080000;
-        public static final int emerald=0x7f080001;
-        public static final int failure_red=0x7f080009;
-        public static final int form_box_bg=0x7f080005;
+        public static final int cyan=0x7f090000;
+        public static final int emerald=0x7f090001;
+        public static final int failure_red=0x7f090009;
+        public static final int form_box_bg=0x7f090005;
         /**  others 
          */
-        public static final int link_text_bg=0x7f080004;
-        public static final int sunflower=0x7f080002;
-        public static final int tinker_bar_graph_background=0x7f080013;
+        public static final int link_text_bg=0x7f090004;
+        public static final int sunflower=0x7f090002;
+        public static final int tinker_bar_graph_background=0x7f090013;
         /**  tinker 
          */
-        public static final int tinker_instructions_bg=0x7f08000a;
-        public static final int tinker_pin_bg=0x7f08000b;
-        public static final int tinker_pin_bg_muted=0x7f08000d;
-        public static final int tinker_pin_bg_selected=0x7f08000c;
-        public static final int tinker_pin_text_dark=0x7f08000f;
-        public static final int tinker_pin_text_muted=0x7f08000e;
-        public static final int tinker_selection_overlay_bg=0x7f080010;
-        public static final int tinker_selection_overlay_item_bg=0x7f080011;
-        public static final int tinker_selection_overlay_item_selected_bg=0x7f080012;
+        public static final int tinker_instructions_bg=0x7f09000a;
+        public static final int tinker_pin_bg=0x7f09000b;
+        public static final int tinker_pin_bg_muted=0x7f09000d;
+        public static final int tinker_pin_bg_selected=0x7f09000c;
+        public static final int tinker_pin_text_dark=0x7f09000f;
+        public static final int tinker_pin_text_muted=0x7f09000e;
+        public static final int tinker_selection_overlay_bg=0x7f090010;
+        public static final int tinker_selection_overlay_item_bg=0x7f090011;
+        public static final int tinker_selection_overlay_item_selected_bg=0x7f090012;
     }
     public static final class dimen {
         /**  Spark app-specific metrics 
          */
-        public static final int account_widget_width=0x7f0a0004;
+        public static final int account_widget_width=0x7f05000e;
         /**  Default screen margins, per the Android Design guidelines. 
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f0a0000;
-        public static final int analog_write_parent_width=0x7f0a0007;
-        public static final int analog_write_text_value_size=0x7f0a0008;
+        public static final int activity_horizontal_margin=0x7f05000a;
+        public static final int analog_write_parent_width=0x7f050011;
+        public static final int analog_write_text_value_size=0x7f050012;
+        public static final int bar_length=0x7f050007;
+        public static final int bar_pointer_halo_radius=0x7f050009;
+        public static final int bar_pointer_radius=0x7f050008;
+        /**  Standart dimens for the bars 
+         */
+        public static final int bar_thickness=0x7f050006;
+        public static final int color_center_halo_radius=0x7f050002;
+        public static final int color_center_radius=0x7f050003;
+        public static final int color_pointer_halo_radius=0x7f050004;
+        public static final int color_pointer_radius=0x7f050005;
+        /**  Standart dimens for the color wheel 
+         */
+        public static final int color_wheel_radius=0x7f050000;
+        public static final int color_wheel_thickness=0x7f050001;
         /**  Other dimensions 
          */
-        public static final int content_width=0x7f0a0005;
-        public static final int logo_top_margin=0x7f0a0006;
-        public static final int text_medium=0x7f0a0003;
+        public static final int content_width=0x7f05000f;
+        public static final int logo_top_margin=0x7f050010;
+        public static final int text_medium=0x7f05000d;
         /**  Default text sizes, per the Android Design guidelines 
          */
-        public static final int text_micro=0x7f0a0001;
-        public static final int text_small=0x7f0a0002;
+        public static final int text_micro=0x7f05000b;
+        public static final int text_small=0x7f05000c;
     }
     public static final class drawable {
         public static final int action_bar_dark_bg=0x7f020000;
@@ -131,105 +253,107 @@ containing a value of this type.
         public static final int white_circle=0x7f02002e;
     }
     public static final class id {
-        public static final int action_build_your_own_core_app=0x7f0b0055;
-        public static final int action_clear_tinker=0x7f0b005b;
-        public static final int action_contribute=0x7f0b0057;
-        public static final int action_documentation=0x7f0b0056;
-        public static final int action_forgot_password=0x7f0b0051;
-        public static final int action_log_out=0x7f0b0052;
-        public static final int action_reflash_tinker=0x7f0b005c;
-        public static final int action_rename_core=0x7f0b005a;
-        public static final int action_report_a_bug=0x7f0b0058;
-        public static final int action_set_up_a_new_core=0x7f0b0059;
-        public static final int action_spark_homepage=0x7f0b0054;
-        public static final int action_support=0x7f0b0053;
-        public static final int active_core_stripe=0x7f0b0017;
-        public static final int aes_parent=0x7f0b0028;
-        public static final int already_have_account=0x7f0b0014;
-        public static final int button1=0x7f0b0009;
-        public static final int button2=0x7f0b000a;
-        public static final int button_set_color=0x7f0b0006;
-        public static final int button_toggle_activation=0x7f0b0005;
-        public static final int connect=0x7f0b0026;
-        public static final int connect_button=0x7f0b0027;
-        public static final int continue_anyway_button=0x7f0b0021;
+        public static final int action_build_your_own_core_app=0x7f0b0057;
+        public static final int action_clear_tinker=0x7f0b005d;
+        public static final int action_contribute=0x7f0b0059;
+        public static final int action_documentation=0x7f0b0058;
+        public static final int action_forgot_password=0x7f0b0053;
+        public static final int action_log_out=0x7f0b0054;
+        public static final int action_reflash_tinker=0x7f0b005e;
+        public static final int action_rename_core=0x7f0b005c;
+        public static final int action_report_a_bug=0x7f0b005a;
+        public static final int action_set_up_a_new_core=0x7f0b005b;
+        public static final int action_spark_homepage=0x7f0b0056;
+        public static final int action_support=0x7f0b0055;
+        public static final int active_core_stripe=0x7f0b0019;
+        public static final int aes_parent=0x7f0b002a;
+        public static final int already_have_account=0x7f0b0016;
+        public static final int button1=0x7f0b0007;
+        public static final int button2=0x7f0b0008;
+        public static final int button_set_color=0x7f0b0009;
+        public static final int button_toggle_activation=0x7f0b0006;
+        public static final int connect=0x7f0b0028;
+        public static final int connect_button=0x7f0b0029;
+        public static final int continue_anyway_button=0x7f0b0023;
         public static final int core_list=0x7f0b0003;
-        public static final int core_name=0x7f0b0018;
-        public static final int cores_title=0x7f0b001a;
-        public static final int custom_aes_key_checkbox=0x7f0b002a;
-        public static final int custom_aes_key_checkbox_image=0x7f0b0029;
-        public static final int custom_aes_key_text=0x7f0b002b;
+        public static final int core_name=0x7f0b001a;
+        public static final int cores_title=0x7f0b001c;
+        public static final int custom_aes_key_checkbox=0x7f0b002c;
+        public static final int custom_aes_key_checkbox_image=0x7f0b002b;
+        public static final int custom_aes_key_text=0x7f0b002d;
         public static final int eesd_container=0x7f0b0004;
-        public static final int email=0x7f0b000d;
+        public static final int eesd_sub_container=0x7f0b0005;
+        public static final int email=0x7f0b000f;
         public static final int fine_print=0x7f0b0000;
-        public static final int forgot_password=0x7f0b0013;
-        public static final int header_border=0x7f0b0015;
-        public static final int header_text=0x7f0b001d;
-        public static final int listContainer=0x7f0b001c;
-        public static final int login=0x7f0b000f;
-        public static final int name_core=0x7f0b001e;
-        public static final int new_name=0x7f0b0019;
-        public static final int no_account_yet=0x7f0b0012;
-        public static final int ok_button=0x7f0b001f;
-        public static final int password=0x7f0b000e;
-        public static final int progressContainer=0x7f0b001b;
-        public static final int progress_indicator=0x7f0b0011;
-        public static final int scroll_area=0x7f0b000b;
-        public static final int seekBar_r=0x7f0b0008;
-        public static final int sign_up_button=0x7f0b0010;
+        public static final int forgot_password=0x7f0b0015;
+        public static final int header_border=0x7f0b0017;
+        public static final int header_text=0x7f0b001f;
+        public static final int listContainer=0x7f0b001e;
+        public static final int login=0x7f0b0011;
+        public static final int name_core=0x7f0b0020;
+        public static final int new_name=0x7f0b001b;
+        public static final int no_account_yet=0x7f0b0014;
+        public static final int ok_button=0x7f0b0021;
+        public static final int password=0x7f0b0010;
+        public static final int picker=0x7f0b000b;
+        public static final int progressContainer=0x7f0b001d;
+        public static final int progress_indicator=0x7f0b0013;
+        public static final int scroll_area=0x7f0b000d;
+        public static final int seekBar_r=0x7f0b000a;
+        public static final int sign_up_button=0x7f0b0012;
         public static final int sliding_pane_layout=0x7f0b0002;
-        public static final int smart_config_frag=0x7f0b0016;
-        public static final int spark_logo=0x7f0b000c;
-        public static final int ssid_label=0x7f0b0022;
-        public static final int ssid_text=0x7f0b0023;
-        public static final int textView1=0x7f0b0007;
-        public static final int tinker_a0=0x7f0b0034;
-        public static final int tinker_a1=0x7f0b0033;
-        public static final int tinker_a2=0x7f0b0032;
-        public static final int tinker_a3=0x7f0b0031;
-        public static final int tinker_a4=0x7f0b0030;
-        public static final int tinker_a5=0x7f0b002f;
-        public static final int tinker_a6=0x7f0b002e;
-        public static final int tinker_a7=0x7f0b002d;
-        public static final int tinker_analog_read_main=0x7f0b003e;
-        public static final int tinker_analog_read_progress=0x7f0b003f;
-        public static final int tinker_analog_read_value=0x7f0b0040;
-        public static final int tinker_analog_write_main=0x7f0b0041;
-        public static final int tinker_analog_write_seekbar=0x7f0b0042;
-        public static final int tinker_analog_write_value=0x7f0b0043;
-        public static final int tinker_button_analog_read=0x7f0b004c;
-        public static final int tinker_button_analog_write=0x7f0b004e;
+        public static final int smart_config_frag=0x7f0b0018;
+        public static final int spark_logo=0x7f0b000e;
+        public static final int ssid_label=0x7f0b0024;
+        public static final int ssid_text=0x7f0b0025;
+        public static final int svbar=0x7f0b000c;
+        public static final int tinker_a0=0x7f0b0036;
+        public static final int tinker_a1=0x7f0b0035;
+        public static final int tinker_a2=0x7f0b0034;
+        public static final int tinker_a3=0x7f0b0033;
+        public static final int tinker_a4=0x7f0b0032;
+        public static final int tinker_a5=0x7f0b0031;
+        public static final int tinker_a6=0x7f0b0030;
+        public static final int tinker_a7=0x7f0b002f;
+        public static final int tinker_analog_read_main=0x7f0b0040;
+        public static final int tinker_analog_read_progress=0x7f0b0041;
+        public static final int tinker_analog_read_value=0x7f0b0042;
+        public static final int tinker_analog_write_main=0x7f0b0043;
+        public static final int tinker_analog_write_seekbar=0x7f0b0044;
+        public static final int tinker_analog_write_value=0x7f0b0045;
+        public static final int tinker_button_analog_read=0x7f0b004e;
+        public static final int tinker_button_analog_write=0x7f0b0050;
         public static final int tinker_button_color=0x7f0b0001;
-        public static final int tinker_button_digital_read=0x7f0b004d;
-        public static final int tinker_button_digital_write=0x7f0b004f;
-        public static final int tinker_button_toggle_activation=0x7f0b0050;
-        public static final int tinker_d0=0x7f0b003c;
-        public static final int tinker_d1=0x7f0b003b;
-        public static final int tinker_d2=0x7f0b003a;
-        public static final int tinker_d3=0x7f0b0039;
-        public static final int tinker_d4=0x7f0b0038;
-        public static final int tinker_d5=0x7f0b0037;
-        public static final int tinker_d6=0x7f0b0036;
-        public static final int tinker_d7=0x7f0b0035;
-        public static final int tinker_digital_read_main=0x7f0b0044;
-        public static final int tinker_digital_read_value=0x7f0b0045;
-        public static final int tinker_digital_write_main=0x7f0b0046;
-        public static final int tinker_digital_write_value=0x7f0b0047;
-        public static final int tinker_instructions=0x7f0b0048;
-        public static final int tinker_instructions_3=0x7f0b0049;
-        public static final int tinker_logo=0x7f0b003d;
-        public static final int tinker_main=0x7f0b002c;
-        public static final int tinker_select=0x7f0b004a;
-        public static final int tinker_select_pin=0x7f0b004b;
-        public static final int try_again_button=0x7f0b0020;
-        public static final int wifi_credentials_label=0x7f0b0024;
-        public static final int wifi_credentials_text=0x7f0b0025;
+        public static final int tinker_button_digital_read=0x7f0b004f;
+        public static final int tinker_button_digital_write=0x7f0b0051;
+        public static final int tinker_button_toggle_activation=0x7f0b0052;
+        public static final int tinker_d0=0x7f0b003e;
+        public static final int tinker_d1=0x7f0b003d;
+        public static final int tinker_d2=0x7f0b003c;
+        public static final int tinker_d3=0x7f0b003b;
+        public static final int tinker_d4=0x7f0b003a;
+        public static final int tinker_d5=0x7f0b0039;
+        public static final int tinker_d6=0x7f0b0038;
+        public static final int tinker_d7=0x7f0b0037;
+        public static final int tinker_digital_read_main=0x7f0b0046;
+        public static final int tinker_digital_read_value=0x7f0b0047;
+        public static final int tinker_digital_write_main=0x7f0b0048;
+        public static final int tinker_digital_write_value=0x7f0b0049;
+        public static final int tinker_instructions=0x7f0b004a;
+        public static final int tinker_instructions_3=0x7f0b004b;
+        public static final int tinker_logo=0x7f0b003f;
+        public static final int tinker_main=0x7f0b002e;
+        public static final int tinker_select=0x7f0b004c;
+        public static final int tinker_select_pin=0x7f0b004d;
+        public static final int try_again_button=0x7f0b0022;
+        public static final int wifi_credentials_label=0x7f0b0026;
+        public static final int wifi_credentials_text=0x7f0b0027;
     }
     public static final class integer {
-        public static final int api_host_port=0x7f070001;
-        public static final int core_name_limit=0x7f070000;
-        public static final int smart_config_hello_msg_length=0x7f070003;
-        public static final int smart_config_hello_port=0x7f070002;
+        public static final int api_host_port=0x7f080001;
+        public static final int core_name_limit=0x7f080000;
+        public static final int smart_config_hello_msg_length=0x7f080003;
+        public static final int smart_config_hello_port=0x7f080002;
     }
     public static final class layout {
         public static final int activity_core_list=0x7f030000;
@@ -266,96 +390,96 @@ containing a value of this type.
         public static final int foundCoresMsg=0x7f0c0000;
     }
     public static final class string {
-        public static final int _unnamed_core_=0x7f05003a;
-        public static final int action_forgot_password=0x7f050041;
-        public static final int action_log_in=0x7f050040;
-        public static final int action_log_out=0x7f050039;
-        public static final int action_settings=0x7f050017;
-        public static final int action_sign_up=0x7f05003f;
-        public static final int api_error_msg=0x7f05000f;
-        public static final int api_param_access_token=0x7f050003;
-        public static final int api_url_scheme=0x7f050004;
-        public static final int api_version=0x7f050002;
+        public static final int _unnamed_core_=0x7f06003a;
+        public static final int action_forgot_password=0x7f060041;
+        public static final int action_log_in=0x7f060040;
+        public static final int action_log_out=0x7f060039;
+        public static final int action_settings=0x7f060017;
+        public static final int action_sign_up=0x7f06003f;
+        public static final int api_error_msg=0x7f06000f;
+        public static final int api_param_access_token=0x7f060003;
+        public static final int api_url_scheme=0x7f060004;
+        public static final int api_version=0x7f060002;
         /**  Misc strings 
          */
-        public static final int app_name=0x7f05000c;
-        public static final int app_name_lower=0x7f05000d;
-        public static final int build_your_own_core_app=0x7f05002a;
-        public static final int cancel=0x7f050022;
-        public static final int clear_tinker=0x7f050035;
+        public static final int app_name=0x7f06000c;
+        public static final int app_name_lower=0x7f06000d;
+        public static final int build_your_own_core_app=0x7f06002a;
+        public static final int cancel=0x7f060022;
+        public static final int clear_tinker=0x7f060035;
         /**  error messages 
          */
-        public static final int cloud_unreachable_msg=0x7f05000e;
-        public static final int connect=0x7f05001b;
-        public static final int connect_a_core=0x7f05002d;
-        public static final int continue_anyway=0x7f050025;
-        public static final int contribute=0x7f050028;
-        public static final int cores=0x7f050031;
-        public static final int custom_aes_key=0x7f05001c;
-        public static final int documentation=0x7f050029;
-        public static final int error_communicating_with_server=0x7f05003c;
-        public static final int error_field_required=0x7f050045;
-        public static final int error_incorrect_password=0x7f050044;
-        public static final int error_invalid_email=0x7f050042;
-        public static final int error_invalid_password=0x7f050043;
-        public static final int gotham_bold=0x7f05000a;
-        public static final int gotham_book=0x7f050009;
-        public static final int gotham_light=0x7f050007;
-        public static final int gotham_medium=0x7f050008;
-        public static final int help_=0x7f05001f;
-        public static final int i_already_have_an_account=0x7f050046;
-        public static final int i_dont_have_an_account=0x7f050048;
-        public static final int lets_connect_your_core=0x7f050018;
-        public static final int log_out=0x7f05001e;
-        public static final int log_out_=0x7f050038;
-        public static final int logged_out=0x7f05003b;
-        public static final int name_the_core_thats_shouting_rainbows=0x7f050023;
-        public static final int no_cores_found_=0x7f050024;
-        public static final int ok=0x7f050021;
-        public static final int password=0x7f050019;
-        public static final int prod_hostname=0x7f050000;
+        public static final int cloud_unreachable_msg=0x7f06000e;
+        public static final int connect=0x7f06001b;
+        public static final int connect_a_core=0x7f06002d;
+        public static final int continue_anyway=0x7f060025;
+        public static final int contribute=0x7f060028;
+        public static final int cores=0x7f060031;
+        public static final int custom_aes_key=0x7f06001c;
+        public static final int documentation=0x7f060029;
+        public static final int error_communicating_with_server=0x7f06003c;
+        public static final int error_field_required=0x7f060045;
+        public static final int error_incorrect_password=0x7f060044;
+        public static final int error_invalid_email=0x7f060042;
+        public static final int error_invalid_password=0x7f060043;
+        public static final int gotham_bold=0x7f06000a;
+        public static final int gotham_book=0x7f060009;
+        public static final int gotham_light=0x7f060007;
+        public static final int gotham_medium=0x7f060008;
+        public static final int help_=0x7f06001f;
+        public static final int i_already_have_an_account=0x7f060046;
+        public static final int i_dont_have_an_account=0x7f060048;
+        public static final int lets_connect_your_core=0x7f060018;
+        public static final int log_out=0x7f06001e;
+        public static final int log_out_=0x7f060038;
+        public static final int logged_out=0x7f06003b;
+        public static final int name_the_core_thats_shouting_rainbows=0x7f060023;
+        public static final int no_cores_found_=0x7f060024;
+        public static final int ok=0x7f060021;
+        public static final int password=0x7f060019;
+        public static final int prod_hostname=0x7f060000;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f05003d;
-        public static final int prompt_password=0x7f05003e;
-        public static final int reconfigure_core=0x7f050030;
-        public static final int reflash_tinker=0x7f05002e;
-        public static final int rename=0x7f050034;
-        public static final int rename_core=0x7f05002f;
-        public static final int rename_your_core=0x7f050033;
-        public static final int report_a_bug=0x7f050027;
-        public static final int sign_up_fine_print=0x7f050047;
-        public static final int smart_config_default_aes_key=0x7f050006;
-        public static final int smart_config_fine_print=0x7f050020;
+        public static final int prompt_email=0x7f06003d;
+        public static final int prompt_password=0x7f06003e;
+        public static final int reconfigure_core=0x7f060030;
+        public static final int reflash_tinker=0x7f06002e;
+        public static final int rename=0x7f060034;
+        public static final int rename_core=0x7f06002f;
+        public static final int rename_your_core=0x7f060033;
+        public static final int report_a_bug=0x7f060027;
+        public static final int sign_up_fine_print=0x7f060047;
+        public static final int smart_config_default_aes_key=0x7f060006;
+        public static final int smart_config_fine_print=0x7f060020;
         /**  Smart Config params 
          */
-        public static final int smart_config_hello_listen_address=0x7f050005;
-        public static final int sorry_you_ve_already_got_a_core_by_that_name_try_another_one_=0x7f050032;
-        public static final int spark_homepage=0x7f05002b;
-        public static final int spark_token_creation_credentials=0x7f05000b;
-        public static final int ssid=0x7f05001a;
-        public static final int staging_hostname=0x7f050001;
-        public static final int stop=0x7f050036;
-        public static final int support=0x7f05002c;
-        public static final int the_spark_core_can_only_accept_passwords_up_to_32_characters_=0x7f050037;
-        public static final int tinker_error=0x7f050010;
-        public static final int tinker_instructions_1=0x7f050013;
-        public static final int tinker_instructions_2=0x7f050014;
-        public static final int tinker_instructions_3=0x7f050015;
-        public static final int tinker_instructions_4=0x7f050016;
-        public static final int try_again=0x7f050026;
-        public static final int uri_build_your_own_app=0x7f05004b;
-        public static final int uri_contribute=0x7f05004d;
-        public static final int uri_docs=0x7f05004c;
-        public static final int uri_forgot_password=0x7f05004f;
-        public static final int uri_report_a_bug=0x7f05004e;
-        public static final int uri_spark_homepage=0x7f05004a;
-        public static final int uri_support=0x7f050049;
-        public static final int welcome_to_tinker=0x7f050012;
-        public static final int you_can_change_these_names_at_any_point=0x7f05001d;
+        public static final int smart_config_hello_listen_address=0x7f060005;
+        public static final int sorry_you_ve_already_got_a_core_by_that_name_try_another_one_=0x7f060032;
+        public static final int spark_homepage=0x7f06002b;
+        public static final int spark_token_creation_credentials=0x7f06000b;
+        public static final int ssid=0x7f06001a;
+        public static final int staging_hostname=0x7f060001;
+        public static final int stop=0x7f060036;
+        public static final int support=0x7f06002c;
+        public static final int the_spark_core_can_only_accept_passwords_up_to_32_characters_=0x7f060037;
+        public static final int tinker_error=0x7f060010;
+        public static final int tinker_instructions_1=0x7f060013;
+        public static final int tinker_instructions_2=0x7f060014;
+        public static final int tinker_instructions_3=0x7f060015;
+        public static final int tinker_instructions_4=0x7f060016;
+        public static final int try_again=0x7f060026;
+        public static final int uri_build_your_own_app=0x7f06004b;
+        public static final int uri_contribute=0x7f06004d;
+        public static final int uri_docs=0x7f06004c;
+        public static final int uri_forgot_password=0x7f06004f;
+        public static final int uri_report_a_bug=0x7f06004e;
+        public static final int uri_spark_homepage=0x7f06004a;
+        public static final int uri_support=0x7f060049;
+        public static final int welcome_to_tinker=0x7f060012;
+        public static final int you_can_change_these_names_at_any_point=0x7f06001d;
         /**  tinker 
          */
-        public static final int your_core_is_set_up=0x7f050011;
+        public static final int your_core_is_set_up=0x7f060011;
     }
     public static final class style {
         public static final int AppTheme=0x7f0d0016;
@@ -391,6 +515,226 @@ containing a value of this type.
         public static final int TinkerSelectColorBox=0x7f0d0011;
     }
     public static final class styleable {
+        /** Attributes that can be used with a ColorBars.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ColorBars_bar_length io.wireless.ball.android:bar_length}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorBars_bar_orientation_horizontal io.wireless.ball.android:bar_orientation_horizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorBars_bar_pointer_halo_radius io.wireless.ball.android:bar_pointer_halo_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorBars_bar_pointer_radius io.wireless.ball.android:bar_pointer_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorBars_bar_thickness io.wireless.ball.android:bar_thickness}</code></td><td></td></tr>
+           </table>
+           @see #ColorBars_bar_length
+           @see #ColorBars_bar_orientation_horizontal
+           @see #ColorBars_bar_pointer_halo_radius
+           @see #ColorBars_bar_pointer_radius
+           @see #ColorBars_bar_thickness
+         */
+        public static final int[] ColorBars = {
+            0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009,
+            0x7f01000a
+        };
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#bar_length}
+          attribute's value can be found in the {@link #ColorBars} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:bar_length
+        */
+        public static final int ColorBars_bar_length = 1;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#bar_orientation_horizontal}
+          attribute's value can be found in the {@link #ColorBars} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:bar_orientation_horizontal
+        */
+        public static final int ColorBars_bar_orientation_horizontal = 4;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#bar_pointer_halo_radius}
+          attribute's value can be found in the {@link #ColorBars} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:bar_pointer_halo_radius
+        */
+        public static final int ColorBars_bar_pointer_halo_radius = 3;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#bar_pointer_radius}
+          attribute's value can be found in the {@link #ColorBars} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:bar_pointer_radius
+        */
+        public static final int ColorBars_bar_pointer_radius = 2;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#bar_thickness}
+          attribute's value can be found in the {@link #ColorBars} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:bar_thickness
+        */
+        public static final int ColorBars_bar_thickness = 0;
+        /** Attributes that can be used with a ColorPicker.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ColorPicker_color_center_halo_radius io.wireless.ball.android:color_center_halo_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorPicker_color_center_radius io.wireless.ball.android:color_center_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorPicker_color_pointer_halo_radius io.wireless.ball.android:color_pointer_halo_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorPicker_color_pointer_radius io.wireless.ball.android:color_pointer_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorPicker_color_wheel_radius io.wireless.ball.android:color_wheel_radius}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorPicker_color_wheel_thickness io.wireless.ball.android:color_wheel_thickness}</code></td><td></td></tr>
+           </table>
+           @see #ColorPicker_color_center_halo_radius
+           @see #ColorPicker_color_center_radius
+           @see #ColorPicker_color_pointer_halo_radius
+           @see #ColorPicker_color_pointer_radius
+           @see #ColorPicker_color_wheel_radius
+           @see #ColorPicker_color_wheel_thickness
+         */
+        public static final int[] ColorPicker = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005
+        };
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#color_center_halo_radius}
+          attribute's value can be found in the {@link #ColorPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:color_center_halo_radius
+        */
+        public static final int ColorPicker_color_center_halo_radius = 3;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#color_center_radius}
+          attribute's value can be found in the {@link #ColorPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:color_center_radius
+        */
+        public static final int ColorPicker_color_center_radius = 2;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#color_pointer_halo_radius}
+          attribute's value can be found in the {@link #ColorPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:color_pointer_halo_radius
+        */
+        public static final int ColorPicker_color_pointer_halo_radius = 5;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#color_pointer_radius}
+          attribute's value can be found in the {@link #ColorPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:color_pointer_radius
+        */
+        public static final int ColorPicker_color_pointer_radius = 4;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#color_wheel_radius}
+          attribute's value can be found in the {@link #ColorPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:color_wheel_radius
+        */
+        public static final int ColorPicker_color_wheel_radius = 0;
+        /**
+          <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#color_wheel_thickness}
+          attribute's value can be found in the {@link #ColorPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name io.wireless.ball.android:color_wheel_thickness
+        */
+        public static final int ColorPicker_color_wheel_thickness = 1;
         /** Attributes that can be used with a Fontify.
            <p>Includes the following attributes:</p>
            <table>
@@ -402,7 +746,7 @@ containing a value of this type.
            @see #Fontify_font
          */
         public static final int[] Fontify = {
-            0x7f010000
+            0x7f01000b
         };
         /**
           <p>This symbol is the offset where the {@link io.wireless.ball.android.R.attr#font}

@@ -57,6 +57,7 @@ public class NetConnectionHelper {
 		return wifiManager.getConnectionInfo();
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getGatewayIp() {
 		DhcpInfo dhcpInfo = wifiManager.getDhcpInfo();
 		if (dhcpInfo == null) {

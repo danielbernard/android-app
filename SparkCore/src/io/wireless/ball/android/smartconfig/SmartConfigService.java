@@ -330,7 +330,7 @@ public class SmartConfigService extends Service implements FirstTimeConfigListen
 			}
 		}
 	}
-
+	@SuppressWarnings("resource")
 	public static String bytesToHexString(byte[] bytes) {
 		StringBuilder sb = new StringBuilder(bytes.length * 2);
 		Formatter formatter = new Formatter(sb);

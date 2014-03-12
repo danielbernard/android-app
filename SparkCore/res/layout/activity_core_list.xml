@@ -13,28 +13,50 @@
         tools:layout="@layout/fragment_core_list" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/eesd_container"
         android:layout_width="450dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/sign_up_background_bitmap"
+        android:orientation="vertical"
         android:paddingTop="?android:attr/actionBarSize" >
-     
-        <Button
-            android:id="@+id/button_toggle_activation"
+
+        <LinearLayout
+            android:id="@+id/eesd_sub_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="toggleActivation"
-            android:text="Turn On/Off" />
-        
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button_toggle_activation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleActivation"
+                android:text="Turn On/Off" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="rainbow"
+                android:text="Rainbow" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="blinkLed"
+                android:text="Blink LED" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/button_set_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="setRgbl"
             android:text="Set Color" />
-       <!--  <Button
+        <!--
+        <Button
             android:id="@+id/button_test_set_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,38 +69,32 @@
             android:layout_height="wrap_content"
             android:maxLength="6"
             />
-         -->
-        
-		<TextView
+
+            <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Colors (Red, Green, Blue)"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+        -->
 
         <SeekBar
             android:id="@+id/seekBar_r"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />		
-       
-        <Button
-            android:id="@+id/button1"
+            android:layout_height="wrap_content" />
+
+        <com.larswerkman.holocolorpicker.ColorPicker
+            android:id="@+id/picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
-            android:onClick="rainbow"
-            android:text="Rainbow" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:onClick="blinkLed"
-            android:text="Blink LED" />
-        
+        <com.larswerkman.holocolorpicker.SVBar
+            android:id="@+id/svbar"
+            android:layout_width="322dp"
+            android:layout_height="112dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dip" />
     </LinearLayout>
-        
-      
 
 </android.support.v4.widget.SlidingPaneLayout>

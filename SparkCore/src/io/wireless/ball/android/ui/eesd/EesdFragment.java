@@ -1,7 +1,6 @@
 package io.wireless.ball.android.ui.eesd;
 
 import io.wireless.ball.android.R;
-import io.wireless.ball.android.cloud.api.Device;
 import io.wireless.ball.android.ui.BaseFragment;
 import io.wireless.ball.android.ui.corelist.CoreListActivity;
 import android.os.Bundle;
@@ -25,7 +24,7 @@ public class EesdFragment  extends BaseFragment {
 	
 	public static final String ARG_DEVICE_ID = "ARG_DEVICE_ID";
 	
-	private Device device;
+	//private Device device;
 	
 	public static EesdFragment newInstance(String deviceId) {
 		Bundle arguments = new Bundle();
@@ -49,25 +48,25 @@ public class EesdFragment  extends BaseFragment {
 		//SeekBar seekBarG = (SeekBar) findViewById(R.id.seekBar_g);
 		//SeekBar seekBarB = (SeekBar) findViewById(R.id.seekBar_b);
 		
-		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
-			
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
-				r = progress;
-				Log.d("Listener", "Progress is " + Integer.toString(progress));
-			}
-		
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				Log.d("Listener", "Progress is start ");
-			}
-		
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				Log.d("Listener", "Progress is stop ");
-			}
-		
-		};
+//		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
+//			
+//			@Override
+//			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
+//				r = progress;
+//				Log.d("Listener", "Progress is " + Integer.toString(progress));
+//			}
+//		
+//			@Override
+//			public void onStartTrackingTouch(SeekBar seekBar) {
+//				Log.d("Listener", "Progress is start ");
+//			}
+//		
+//			@Override
+//			public void onStopTrackingTouch(SeekBar seekBar) {
+//				Log.d("Listener", "Progress is stop ");
+//			}
+//		
+//		};
 		
 		
 		// Crashes on next line, NullPointerException

@@ -25,8 +25,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.EditText;
 import android.widget.SeekBar;
+
+import com.larswerkman.holocolorpicker.ColorPicker;
+import com.larswerkman.holocolorpicker.SVBar;
 
 
 public class CoreListActivity extends BaseActivity implements CoreListFragment.Callbacks {
@@ -51,6 +53,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	public int green = 0;
 	public int blue = 0;
 	public SeekBar seekBarR;
+	private ColorPicker colorPicker;
+	private SVBar sVBar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,17 +62,30 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		
 		setContentView(R.layout.activity_core_list);
 		
-		// Add SeekBars
+		colorPicker = (ColorPicker) findViewById(R.id.picker);
+		sVBar = (SVBar) findViewById(R.id.svbar);
 		
+		colorPicker.addSVBar(sVBar);
+		ColorPicker.OnColorChangedListener cListener = new ColorPicker.OnColorChangedListener() {
+			
+			@Override
+			public void onColorChanged(int color) {
+				// TODO Auto-generated method stub
+				Log.d("PICKER", Integer.toString(color));
+			}
+		};
+		
+		colorPicker.setOnColorChangedListener(cListener);
+		
+		// Add SeekBars
 		seekBarR = (SeekBar)findViewById(R.id.seekBar_r);
 		seekBarR.setMax(32);
-		
 		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
 			
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
 				setR(progress);
-				String color = Integer.toHexString(seekBarR.getProgress()) + "0000";
+				//String color = Integer.toHexString(seekBarR.getProgress()) + "0000";
 				//Log.d("Listener", "Progress is " + Integer.toString(progress));
 				//Log.d("Listener","setRgbl color " + color);
 				//Log.d("Listener","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
