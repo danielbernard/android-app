@@ -95,6 +95,18 @@
             android:layout_height="112dp"
             android:layout_gravity="center"
             android:layout_margin="8dip" />
+        <com.larswerkman.holocolorpicker.SaturationBar
+            android:id="@+id/sbar"
+            android:layout_width="322dp"
+            android:layout_height="112dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dip" />
+        <com.larswerkman.holocolorpicker.ValueBar
+            android:id="@+id/vbar"
+            android:layout_width="322dp"
+            android:layout_height="112dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dip" />
     </LinearLayout>
 
 </android.support.v4.widget.SlidingPaneLayout>

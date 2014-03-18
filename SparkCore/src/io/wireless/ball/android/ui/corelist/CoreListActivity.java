@@ -29,6 +29,8 @@ import android.widget.SeekBar;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SVBar;
+import com.larswerkman.holocolorpicker.SaturationBar;
+import com.larswerkman.holocolorpicker.ValueBar;
 
 
 public class CoreListActivity extends BaseActivity implements CoreListFragment.Callbacks {
@@ -55,6 +57,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	public SeekBar seekBarR;
 	private ColorPicker colorPicker;
 	private SVBar sVBar;
+	private SaturationBar sBar;
+	private ValueBar vBar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +68,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		
 		colorPicker = (ColorPicker) findViewById(R.id.picker);
 		sVBar = (SVBar) findViewById(R.id.svbar);
+		sBar = (SaturationBar) findViewById(R.id.sbar);
+		vBar = (ValueBar) findViewById(R.id.vbar);
 		
 		colorPicker.addSVBar(sVBar);
+		colorPicker.addSaturationBar(sBar);
+		colorPicker.addValueBar(vBar);
 		ColorPicker.OnColorChangedListener cListener = new ColorPicker.OnColorChangedListener() {
 			
 			@Override
