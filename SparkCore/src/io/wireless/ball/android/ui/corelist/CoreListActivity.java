@@ -56,7 +56,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	public int blue = 0;
 	public SeekBar seekBarR;
 	private ColorPicker colorPicker;
-	private SVBar sVBar;
+//	private SVBar sVBar;
 	private SaturationBar sBar;
 	private ValueBar vBar;
 	
@@ -67,11 +67,11 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		setContentView(R.layout.activity_core_list);
 		
 		colorPicker = (ColorPicker) findViewById(R.id.picker);
-		sVBar = (SVBar) findViewById(R.id.svbar);
+//		sVBar = (SVBar) findViewById(R.id.svbar);
 		sBar = (SaturationBar) findViewById(R.id.sbar);
 		vBar = (ValueBar) findViewById(R.id.vbar);
 		
-		colorPicker.addSVBar(sVBar);
+//		colorPicker.addSVBar(sVBar);
 		colorPicker.addSaturationBar(sBar);
 		colorPicker.addValueBar(vBar);
 		ColorPicker.OnColorChangedListener cListener = new ColorPicker.OnColorChangedListener() {
@@ -435,10 +435,14 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	public void blinkLed(View view) {
 //		String color = Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
 		String color = "630063";
-		String rate = "1000";
-		int iter = 5; 
+		String rate = "0500";
+		int iter = 2; 
 		api.blinkLed(deviceById.id, color, rate, iter);
 		Log.d("button","blinkLed called");
+	}
+	public void saveColor(View view) {
+		api.saveColor(deviceById.id);
+		Log.d("button","saveColor called");
 	}
 
 	
