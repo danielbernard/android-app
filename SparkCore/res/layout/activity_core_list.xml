@@ -157,6 +157,12 @@
             android:layout_height="112dp"
             android:layout_gravity="center"
             android:layout_margin="8dip" />
+        
+        <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color Picker Test"
+            android:onClick="colorPickerTest"/>
     </LinearLayout>
 
 </android.support.v4.widget.SlidingPaneLayout>

@@ -79,11 +79,12 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			@Override
 			public void onColorChanged(int color) {
 				// TODO Auto-generated method stub
-				Log.d("PICKER", Integer.toString(color));
+				//Log.d("PICKER", Integer.toString(color));
 			}
 		};
 		
 		colorPicker.setOnColorChangedListener(cListener);
+		
 		
 		// Add SeekBars
 		seekBarR = (SeekBar)findViewById(R.id.seekBar_r);
@@ -390,6 +391,14 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		Log.d("button","toggleActivation called");
 	}
 	
+	public void colorPickerTest(View view) {
+		int argb = colorPicker.getColor();
+		String sargb = Integer.toHexString(argb);
+		String srgb = sargb.substring(2);
+		api.setRgbl(deviceById.id, srgb);
+		Log.d("TESTER", sargb);
+		Log.d("TESTER", srgb);
+	}
 	//Tester Button
 //	public void grabColor(View view){
 //		EditText editText = (EditText)findViewById(R.id.edittext_grab_color);
