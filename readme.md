@@ -12,7 +12,7 @@ An additional "Thank you" is deserved by our project advisor, [Scott Norr](www.d
 
 ## Open Source Licenses
 
-Original code in this repository is licensed by Spark Labs, Inc. under the Apache License, Version 2.0.
+Original code in this repository is licensed by the University of Minnesota Duluth, Electrical Engineering Department under the Apache License, Version 2.0.
 See LICENSE for more information.
 
 This app uses several Open Source libraries. See SparkCore/libs/licenses for more information.
