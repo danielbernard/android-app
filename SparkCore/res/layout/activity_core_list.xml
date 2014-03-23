@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/core_list"
-        android:name="io.wireless.ball.android.ui.corelist.CoreListFragment"
+        android:name="io.helio.android.ui.corelist.CoreListFragment"
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
@@ -135,14 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
-        <!--
-             <com.larswerkman.holocolorpicker.SVBar
-            android:id="@+id/svbar"
-            android:layout_width="322dp"
-            android:layout_height="112dp"
-            android:layout_gravity="center"
-            android:layout_margin="8dip" />
-		-->
+
 
         <com.larswerkman.holocolorpicker.SaturationBar
             android:id="@+id/sbar"
