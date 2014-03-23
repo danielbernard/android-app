@@ -6,9 +6,9 @@
 This is the source repository for the official Helio app for Android, providing an interface for controlling separate lamp cores.
 
 ## Thanks
-A special "Thank you" to the [Spark Team](spark.io) for open-sourcing their [Spark App](https://github.com/spark/android-app/).
+A special "Thank you" to the [Spark Team](http://spark.io) for open-sourcing their [Spark App](https://github.com/spark/android-app/).
 Since our Senior Design project is built with their product at the "Core", we truly could not have done it without them.
-An additional "Thank you" is deserved by our project advisor, [Scott Norr](www.d.umn.edu/~snorr). He's worked through this project with us from the very beginning, and has given us lots of great ideas to look into.
+An additional "Thank you" is deserved by our project advisor, [Scott Norr](http://www.d.umn.edu/~snorr). He's worked through this project with us from the very beginning, and has given us lots of great ideas to look into.
 
 ## Open Source Licenses
 
