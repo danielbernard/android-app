@@ -1,7 +1,7 @@
 # Helio Android App
 [![Backlog](https://badge.waffle.io/berna228/android-app.png?label=Backlog&title=Backlog)](http://waffle.io/berna228/android-app)
 [![Ideas](https://badge.waffle.io/berna228/android-app.png?label=ideas&title=Ideas)](http://waffle.io/berna228/android-app)
-[![In Progress](https://badge.waffle.io/berna228/android-app.png?label=in%20progress&title=In%20Progress)](http://waffle.io/berna228/android-app)
+[![In Progress](https://badge.waffle.io/berna228/android-app.png?label=in progress&title=In Progress)](http://waffle.io/berna228/android-app)
 
 This is the source repository for the official Helio app for Android, providing an interface for controlling separate lamp cores.
 
