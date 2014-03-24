@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Misc strings -->
-    <string name="app_name">Spark</string>
-    <string name="app_name_lower">spark</string>
+    <string name="app_name">Helio</string>
+    <string name="app_name_lower">helio</string>
 
     <!-- error messages -->
     <string name="cloud_unreachable_msg">Spark could not be reached at this time. Please check your internet connection, and try again later.</string>
