@@ -21,52 +21,86 @@
         android:orientation="vertical"
         android:paddingTop="?android:attr/actionBarSize" >
 
-        <LinearLayout
-            android:id="@+id/eesd_sub_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dip" >
+            
             <Button
-                android:id="@+id/button_toggle_activation"
+                android:id="@+id/button_rainbow"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="rainbow"
+                android:text="Rainbow" />
+            
+            <View
+                android:id="@+id/eesd_sub_split1"
+                android:layout_width="1dip"
+                android:layout_height="40dip"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/button_rainbow"
+                android:layout_marginBottom="4dip"
+                android:layout_marginTop="4dip"
+                android:background="?android:attr/dividerVertical" />
+            
+            <View
+                android:id="@+id/eesd_sub_split2"
+                android:layout_width="1dip"
+                android:layout_height="40dip"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/button_rainbow"
+                android:layout_marginBottom="4dip"
+                android:layout_marginTop="4dip"
+                android:background="?android:attr/dividerVertical" />
+            
+            <Button
+                android:id="@+id/button_toggle_activation"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/eesd_sub_split1"
                 android:onClick="toggleActivation"
                 android:text="Turn On/Off" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/button_blink_led"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="rainbow"
-                android:text="Rainbow" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/eesd_sub_split2"
                 android:onClick="blinkLed"
                 android:text="Blink LED" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp" >
 
             <View
+                android:id="@+id/border_top"
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="4dip"
                 android:layout_marginRight="4dip"
                 android:background="?android:attr/dividerVertical" />
+            
+            <View
+                android:id="@+id/border_middle"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_below="@id/button_toggle_activation"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
+                android:background="?android:attr/dividerVertical" />
 
             <View
-                android:id="@+id/eesd_sub_split"
+                android:id="@+id/eesd_sub_split3"
                 android:layout_width="1dip"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/button_toggle_activation"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="4dip"
                 android:layout_marginTop="4dip"
@@ -78,9 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@id/eesd_sub_split"
-                android:onClick="setRgbl"
+                android:layout_below="@id/button_toggle_activation"
+                android:layout_toLeftOf="@id/eesd_sub_split3"
                 android:text="Set Color" />
 
             <Button
@@ -89,11 +122,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@id/eesd_sub_split"
+                android:layout_below="@id/button_toggle_activation"
+                android:layout_toRightOf="@id/eesd_sub_split3"
                 android:onClick="saveColor"
                 android:text="Save Color" />
             <View
+                android:id="@+id/border_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:layout_alignParentBottom="true"
@@ -102,40 +136,12 @@
                 android:background="?android:attr/dividerVertical" />
         </RelativeLayout>
 
-        <!--
-        <Button
-            android:id="@+id/button_test_set_color"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="grabColor"
-            android:text="Grab Color" />
-             
-        <EditText 
-            android:id="@+id/edittext_grab_color"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLength="6" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Colors (Red, Green, Blue)"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-            -->
-
-        <SeekBar
-            android:id="@+id/seekBar_r"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <com.larswerkman.holocolorpicker.ColorPicker
             android:id="@+id/picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
-
-
 
         <com.larswerkman.holocolorpicker.SaturationBar
             android:id="@+id/sbar"
@@ -149,13 +155,7 @@
             android:layout_width="322dp"
             android:layout_height="112dp"
             android:layout_gravity="center"
-            android:layout_margin="8dip" />
-        
-        <Button 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Color Picker Test"
-            android:onClick="colorPickerTest"/>
+            android:layout_margin="8dip" />       
     </LinearLayout>
 
 </android.support.v4.widget.SlidingPaneLayout>

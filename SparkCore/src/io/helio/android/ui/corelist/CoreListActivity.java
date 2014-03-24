@@ -1,6 +1,7 @@
 package io.helio.android.ui.corelist;
 
 import static org.solemnsilence.util.Py.truthy;
+import io.helio.android.R;
 import io.helio.android.app.DeviceState;
 import io.helio.android.cloud.api.Device;
 import io.helio.android.smartconfig.SmartConfigState;
@@ -8,7 +9,6 @@ import io.helio.android.ui.BaseActivity;
 import io.helio.android.ui.eesd.EesdFragment;
 import io.helio.android.ui.smartconfig.SmartConfigActivity;
 import io.helio.android.ui.util.Ui;
-import io.helio.android.R;
 
 import org.solemnsilence.util.TLog;
 
@@ -25,18 +25,15 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.SeekBar;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
-import com.larswerkman.holocolorpicker.SVBar;
 import com.larswerkman.holocolorpicker.SaturationBar;
 import com.larswerkman.holocolorpicker.ValueBar;
 
-
-public class CoreListActivity extends BaseActivity implements CoreListFragment.Callbacks {
+public class CoreListActivity extends BaseActivity implements
+		CoreListFragment.Callbacks {
 	public static Device deviceById;
 	private static final TLog log = new TLog(CoreListActivity.class);
-
 
 	public static final String ARG_SKIP_TO_SMART_CONFIG = "ARG_SKIP_TO_SMART_CONFIG";
 	public static final String ARG_ENTERING_FROM_LAUNCH = "ARG_ENTERING_FROM_LAUNCH";
@@ -45,69 +42,67 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	private static final String STATE_SELECTED_DEVICE_ID = "STATE_SELECTED_DEVICE_ID";
 	private static final String STATE_PANE_OPEN = "STATE_PANE_OPEN";
 
-
 	private LayerDrawable actionBarBackgroundDrawable;
 	private ActionBar actionBar;
 	private SlidingPaneLayout slidingLayout;
 	private String selectedItemId;
 
-	public int red = 50;
-	public int green = 0;
-	public int blue = 0;
-	public SeekBar seekBarR;
+	// EESD Global Variables
 	private ColorPicker colorPicker;
-//	private SVBar sVBar;
 	private SaturationBar sBar;
 	private ValueBar vBar;
-	
+	private int colorOld;
+	private int colorNew;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_core_list);
-		
+
 		colorPicker = (ColorPicker) findViewById(R.id.picker);
 		sBar = (SaturationBar) findViewById(R.id.sbar);
 		vBar = (ValueBar) findViewById(R.id.vbar);
-		
+
 		colorPicker.addSaturationBar(sBar);
 		colorPicker.addValueBar(vBar);
 		ColorPicker.OnColorChangedListener cListener = new ColorPicker.OnColorChangedListener() {
-			
+
 			@Override
 			public void onColorChanged(int color) {
-				// TODO Auto-generated method stub
-				//Log.d("PICKER", Integer.toString(color));
+				// Log.d("PICKER", Integer.toHexString(color));
+				colorPicker.setOldCenterColor(color);
+				colorNew = color;
 			}
 		};
-		
+
 		colorPicker.setOnColorChangedListener(cListener);
-		
-		
-		// Add SeekBars
-		seekBarR = (SeekBar)findViewById(R.id.seekBar_r);
-		seekBarR.setMax(32);
-		SeekBar.OnSeekBarChangeListener rlisten = new SeekBar.OnSeekBarChangeListener(){
-			
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {			
-				setR(progress);
+		Runnable runnable = new Runnable() {
+			public void run() {
+				String sargb;
+				String srgb;
+				while (true) {
+					if (colorOld != colorNew) {
+						sargb = Integer.toHexString(colorNew);
+						srgb = sargb.substring(2);
+						api.setRgbl(deviceById.id, srgb);
+						// Log.d("TESTER", sargb);
+						// Log.d("TESTER", srgb);
+						colorOld = colorNew;
+					}
+					
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
-		
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				Log.d("Listener", "Progress is start ");
-			}
-		
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				Log.d("Listener", "Progress is stop ");
-			}
-		
 		};
-		
-		seekBarR.setOnSeekBarChangeListener(rlisten);
-		
+
+		Thread newThread = new Thread(runnable);
+		newThread.start();
+
 		String deviceIdToSelect = null;
 		boolean openPane = true;
 
@@ -117,7 +112,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		Intent intentToSkipTo = null;
 		if (savedInstanceState != null) {
 			if (savedInstanceState.containsKey(STATE_SELECTED_DEVICE_ID)) {
-				deviceIdToSelect = savedInstanceState.getString(STATE_SELECTED_DEVICE_ID);
+				deviceIdToSelect = savedInstanceState
+						.getString(STATE_SELECTED_DEVICE_ID);
 			}
 			if (savedInstanceState.containsKey(STATE_PANE_OPEN)) {
 				openPane = savedInstanceState.getBoolean(STATE_PANE_OPEN);
@@ -128,7 +124,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			intentToSkipTo = new Intent(this, SmartConfigActivity.class);
 
 		} else if (getIntent().hasExtra(ARG_ENTERING_FROM_LAUNCH)) {
-			log.i("Known devices count: " + DeviceState.getKnownDevices().size());
+			log.i("Known devices count: "
+					+ DeviceState.getKnownDevices().size());
 			if (DeviceState.getKnownDevices().isEmpty()) {
 				intentToSkipTo = new Intent(this, SmartConfigActivity.class);
 
@@ -151,7 +148,6 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			return;
 		}
 
-
 		actionBar = getActionBar();
 
 		initActionBar();
@@ -159,7 +155,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		slidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane_layout);
 
 		slidingLayout.setPanelSlideListener(new SliderListener());
-		slidingLayout.getViewTreeObserver().addOnGlobalLayoutListener(new InitialLayoutListener());
+		slidingLayout.getViewTreeObserver().addOnGlobalLayoutListener(
+				new InitialLayoutListener());
 
 		if (openPane) {
 			slidingLayout.openPane();
@@ -170,16 +167,15 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		if (deviceIdToSelect != null) {
 			onItemSelected(deviceIdToSelect);
 		}
-		
-	}
-	
 
+	}
 
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		if (intent.hasExtra(ARG_SELECT_DEVICE_ID)) {
-			String deviceIdToSelect = intent.getStringExtra(ARG_SELECT_DEVICE_ID);
+			String deviceIdToSelect = intent
+					.getStringExtra(ARG_SELECT_DEVICE_ID);
 			intent.removeExtra(ARG_SELECT_DEVICE_ID);
 			onItemSelected(deviceIdToSelect);
 		}
@@ -189,8 +185,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		// this is such a rad effect. Huge props to Cyril Mottier for his
 		// "Pushing the ActionBar to the Next Level" article, which inspired the
 		// basis of this
-		actionBarBackgroundDrawable = (LayerDrawable) getResources().getDrawable(
-				R.drawable.action_bar_layers);
+		actionBarBackgroundDrawable = (LayerDrawable) getResources()
+				.getDrawable(R.drawable.action_bar_layers);
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
 			actionBarBackgroundDrawable.setCallback(new Drawable.Callback() {
 
@@ -200,7 +196,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 				}
 
 				@Override
-				public void scheduleDrawable(Drawable who, Runnable what, long when) {
+				public void scheduleDrawable(Drawable who, Runnable what,
+						long when) {
 				}
 
 				@Override
@@ -235,15 +232,15 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
-			case R.id.action_set_up_a_new_core:
-				startActivity(new Intent(this, SmartConfigActivity.class));
-				return true;
+		case R.id.action_set_up_a_new_core:
+			startActivity(new Intent(this, SmartConfigActivity.class));
+			return true;
 
-			case android.R.id.home:
-				if (!slidingLayout.isOpen()) {
-					slidingLayout.openPane();
-					return true;
-				}
+		case android.R.id.home:
+			if (!slidingLayout.isOpen()) {
+				slidingLayout.openPane();
+				return true;
+			}
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -265,8 +262,7 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		setCustomActionBarTitle(deviceById.name);
 
 		selectedItemId = id;
-		getFragmentManager()
-				.beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.eesd_container, EesdFragment.newInstance(id))
 				.commit();
 
@@ -335,8 +331,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		}
 	}
 
-
-	private class SliderListener extends SlidingPaneLayout.SimplePanelSlideListener {
+	private class SliderListener extends
+			SlidingPaneLayout.SimplePanelSlideListener {
 
 		@Override
 		public void onPanelOpened(View panel) {
@@ -355,8 +351,8 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 		}
 	}
 
-
-	private class InitialLayoutListener implements ViewTreeObserver.OnGlobalLayoutListener {
+	private class InitialLayoutListener implements
+			ViewTreeObserver.OnGlobalLayoutListener {
 
 		@SuppressWarnings("deprecation")
 		@SuppressLint("NewApi")
@@ -369,104 +365,35 @@ public class CoreListActivity extends BaseActivity implements CoreListFragment.C
 			}
 
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-				slidingLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+				slidingLayout.getViewTreeObserver()
+						.removeOnGlobalLayoutListener(this);
 			} else {
-				slidingLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+				slidingLayout.getViewTreeObserver()
+						.removeGlobalOnLayoutListener(this);
 			}
 		}
 	}
-	
-	
-	//Our Janky Method. It works!
+
+	// EESD defined Functions
 	public void toggleActivation(View view) {
 		api.toggleActivation(deviceById.id);
-		Log.d("button","toggleActivation called");
 	}
-	
-	public void colorPickerTest(View view) {
-		int argb = colorPicker.getColor();
-		String sargb = Integer.toHexString(argb);
-		String srgb = sargb.substring(2);
-		api.setRgbl(deviceById.id, srgb);
-		Log.d("TESTER", sargb);
-		Log.d("TESTER", srgb);
-	}
-	
-	public void setRgbl(View view) {
-		double progress = seekBarR.getProgress();
-		int red = (int) (Math.sin(.2 * progress) * 127 + 128);
-		int green = (int) (Math.sin(.2 * progress + 2.094) * 127 + 128);
-		int blue = (int) (Math.sin(.2 * progress + 4.187) * 127 + 128);
-		
-		String rColor;
-		String gColor;
-		String bColor;
-		
-		rColor = intToHexString(red);
-		gColor = intToHexString(green);
-		bColor = intToHexString(blue);
-		String color = rColor + gColor + bColor;
-		api.setRgbl(deviceById.id, color);
-		
-		Log.d("button","setRgbl color " + rColor + " " + gColor + " " + bColor);
-		Log.d("button","setRgbl progress " + Integer.toString(seekBarR.getProgress()));
-	}
-	
-	//properly converts an int to a hex string of length 2
-	public String intToHexString(int color){
-		String colorString;
-		if (color < 15){
-			colorString = "0" + Integer.toHexString(color);
-		} else {
-			colorString = Integer.toHexString(color);
-		}
-		return colorString;
-	}
-	
+
 	public void rainbow(View view) {
 		api.rainbow(deviceById.id);
-		Log.d("button","rainbow called");
+		Log.d("button", "rainbow called");
 	}
+
 	public void blinkLed(View view) {
-//		String color = Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
 		String color = "630063";
 		String rate = "0500";
-		int iter = 2; 
+		int iter = 2;
 		api.blinkLed(deviceById.id, color, rate, iter);
-		Log.d("button","blinkLed called");
+		Log.d("button", "blinkLed called");
 	}
+
 	public void saveColor(View view) {
 		api.saveColor(deviceById.id);
-		Log.d("button","saveColor called");
-	}
-
-	
-	//Get/Set Red
-	public void setR(int newR) {
-		this.red = newR;
-	}
-	
-	public int getR(){
-		return this.red;
-	}
-	
-	//Get/Set Green 
-	public void setG(int newG) {
-		this.green = newG;
-	}
-	
-	public int getG(){
-		return this.green;
-	}
-	
-	//Get/Set Blue
-	public void setB(int newB) {
-		this.blue = newB;
-	}
-	
-	public int getB(){
-		return this.blue;
+		Log.d("button", "saveColor called");
 	}
 }
-
-
