@@ -114,7 +114,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/button_toggle_activation"
                 android:layout_toLeftOf="@id/eesd_sub_split3"
-                android:text="Set Color" />
+                android:onClick="test"
+                android:text="TEST" />
 
             <Button
                 android:id="@+id/button_save_color"

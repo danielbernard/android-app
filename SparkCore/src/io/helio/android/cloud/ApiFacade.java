@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -207,30 +208,43 @@ public class ApiFacade {
 				args, receiver, null);
 	}
 	
+	//EESD Defined Functions
 	public void toggleActivation(String coreId) {
 		Bundle args = new Bundle();
 		args.putString("params", "t_act");
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId,  "fn_r" }, args, null, null);
 	}
+	
 	public void setRgbl(String coreId, String color) {
 		Bundle args = new Bundle();
 		args.putString("params", "s_rgbl," + color);
 		SimpleSparkApiService.post(ctx, new String[] { "devices", coreId, "fn_r" }, args, null, null);
 	}
+	
 	public void rainbow(String coreId) {
 		Bundle args = new Bundle();
 		args.putString("params", "rainbow");
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId, "fn_r" }, args, null, null);
 	}
+	
 	public void blinkLed(String coreId, String color, String rate, int iter) {
 		Bundle args = new Bundle();
 		args.putString("params",  "b_led," + color + "," + rate + "," + iter);
 		SimpleSparkApiService.post(ctx, new String[] { "devices", coreId, "fn_r" }, args, null, null);
 	}
+	
 	public void saveColor(String coreId) {
 		Bundle args = new Bundle();
 		args.putString("params", "save_color");
 		SimpleSparkApiService.post(ctx, new String[] { "devices",  coreId, "fn_r" }, args, null, null);
+	}
+	
+	public int getBatteryLife(String coreId) {
+		EesdBatteryResponseReceiver receiver = new EesdBatteryResponseReceiver(handler);
+		Bundle args = new Bundle();
+		args.putString("params", "bat_read");
+		SimpleSparkApiService.post(ctx, new String[] {"devices", coreId, "fn_r"}, args, receiver, null);
+		return receiver.batteryLevel;
 	}
 
 	
@@ -273,9 +287,48 @@ public class ApiFacade {
 		public boolean shouldReportErrors() {
 			return true;
 		}
-
 	}
 
+	//EESD ResponseReceiver Class
+	public class EesdBatteryResponseReceiver extends ApiResponseReceiver {
+
+		int batteryLevel;
+		
+		public EesdBatteryResponseReceiver(Handler handler) {
+			super(handler);
+			//batteryLevel = 0;
+			Log.d("TEST", "EesdBatteryResponseReceiver created");
+		}
+
+		@Override
+		public void onRequestResponse(int statusCode, String jsonData) {
+			// TODO Auto-generated method stub
+			try {
+				Log.d("TEST", "attempting json creation");
+				JSONObject json = new JSONObject(jsonData);
+				Log.d("TEST", "json created");
+				Log.d("TEST", json.toString());
+				int batLevel = json.getInt("return_value");
+				Log.d("TEST", "String assigned" + Integer.toString(batLevel));
+					//JSONObject idObj = jsonArray.getJSONObject(i);
+					//String batLevel = idObj.getString("result");
+					//log.d("Got ID of core which was 'unheard' via mDNS/CoAP: " + batLevel);
+					//SmartConfigState.addSmartConfigFoundId(unheardCoreId);
+					//instance.claimCore(unheardCoreId);
+				
+				batteryLevel = batLevel;
+
+			} catch (JSONException e) {
+				log.e("Bad JSON response trying to get the IDs of cores which weren't heard from via mDNS/CoAP");
+			}
+			
+		}
+		
+		public int getBatteryLevel(){
+			return batteryLevel;
+		}
+		
+	}
 
 	abstract class BaseTinkerValueReceiver extends ApiResponseReceiver {
 

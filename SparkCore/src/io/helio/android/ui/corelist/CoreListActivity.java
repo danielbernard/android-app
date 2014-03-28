@@ -3,6 +3,7 @@ package io.helio.android.ui.corelist;
 import static org.solemnsilence.util.Py.truthy;
 import io.helio.android.R;
 import io.helio.android.app.DeviceState;
+import io.helio.android.cloud.ApiFacade;
 import io.helio.android.cloud.api.Device;
 import io.helio.android.smartconfig.SmartConfigState;
 import io.helio.android.ui.BaseActivity;
@@ -47,12 +48,13 @@ public class CoreListActivity extends BaseActivity implements
 	private SlidingPaneLayout slidingLayout;
 	private String selectedItemId;
 
-	// EESD Global Variables
+	//EESD Global Variables
 	private ColorPicker colorPicker;
 	private SaturationBar sBar;
 	private ValueBar vBar;
 	private int colorOld;
 	private int colorNew;
+	private Thread newThread;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,36 +74,12 @@ public class CoreListActivity extends BaseActivity implements
 				// Log.d("PICKER", Integer.toHexString(color));
 				colorPicker.setOldCenterColor(color);
 				colorNew = color;
+				//newThread.notify();
 			}
 		};
 
 		colorPicker.setOnColorChangedListener(cListener);
-		Runnable runnable = new Runnable() {
-			public void run() {
-				String sargb;
-				String srgb;
-				while (true) {
-					if (colorOld != colorNew) {
-						sargb = Integer.toHexString(colorNew);
-						srgb = sargb.substring(2);
-						api.setRgbl(deviceById.id, srgb);
-						// Log.d("TESTER", sargb);
-						// Log.d("TESTER", srgb);
-						colorOld = colorNew;
-					}
-					
-					try {
-						Thread.sleep(200);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		};
-
-		Thread newThread = new Thread(runnable);
-		newThread.start();
+		
 
 		String deviceIdToSelect = null;
 		boolean openPane = true;
@@ -226,6 +204,33 @@ public class CoreListActivity extends BaseActivity implements
 		if (selectedItemId == null && !DeviceState.getKnownDevices().isEmpty()) {
 			onItemSelected(DeviceState.getKnownDevices().get(0).id);
 		}
+		
+		//EESD code
+		Runnable runnable = new Runnable() {
+			public void run() {
+				String sargb;
+				String srgb;
+				while (true) {
+					if (colorOld != colorNew) {
+						sargb = Integer.toHexString(colorNew);
+						srgb = sargb.substring(2);
+						api.setRgbl(deviceById.id, srgb);
+						// Log.d("TESTER", sargb);
+						// Log.d("TESTER", srgb);
+						colorOld = colorNew;
+					}
+					
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						Log.d("EXCEPTION", e.toString());
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		newThread = new Thread(runnable);
+		newThread.start();
 	}
 
 	@Override
@@ -374,7 +379,23 @@ public class CoreListActivity extends BaseActivity implements
 		}
 	}
 
-	// EESD defined Functions
+	//EESD defined Functions
+	@Override
+	protected void onStop(){
+		super.onStop();
+		try {
+			newThread.join();
+		} catch (InterruptedException e) {
+			Log.d("EXCEPTION", e.toString());
+			e.printStackTrace();
+		}
+	}
+	
+	public void test(View view) {
+		int batteryLevel = api.getBatteryLife(deviceById.id);
+		Log.d("TEST", "batLevel1 is: " + Integer.toString(batteryLevel));
+	}
+	
 	public void toggleActivation(View view) {
 		api.toggleActivation(deviceById.id);
 	}
