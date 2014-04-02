@@ -48,13 +48,18 @@ public class CoreListActivity extends BaseActivity implements
 	private SlidingPaneLayout slidingLayout;
 	private String selectedItemId;
 
-	//EESD Global Variables
+	// EESD Global Variables
 	private ColorPicker colorPicker;
 	private SaturationBar sBar;
 	private ValueBar vBar;
 	private int colorOld;
 	private int colorNew;
-	private Thread newThread;
+	private Thread colorThread;
+	private Thread batteryThread;
+	private boolean isRunning;
+
+	// ApiFacade.EesdBatteryResponseReceiver receiver =
+	// ApiFacade.EesdBatteryResponseReceiver(ApiFacade.handler);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +79,11 @@ public class CoreListActivity extends BaseActivity implements
 				// Log.d("PICKER", Integer.toHexString(color));
 				colorPicker.setOldCenterColor(color);
 				colorNew = color;
-				//newThread.notify();
+				// newThread.notify();
 			}
 		};
 
 		colorPicker.setOnColorChangedListener(cListener);
-		
 
 		String deviceIdToSelect = null;
 		boolean openPane = true;
@@ -204,33 +208,7 @@ public class CoreListActivity extends BaseActivity implements
 		if (selectedItemId == null && !DeviceState.getKnownDevices().isEmpty()) {
 			onItemSelected(DeviceState.getKnownDevices().get(0).id);
 		}
-		
-		//EESD code
-		Runnable runnable = new Runnable() {
-			public void run() {
-				String sargb;
-				String srgb;
-				while (true) {
-					if (colorOld != colorNew) {
-						sargb = Integer.toHexString(colorNew);
-						srgb = sargb.substring(2);
-						api.setRgbl(deviceById.id, srgb);
-						// Log.d("TESTER", sargb);
-						// Log.d("TESTER", srgb);
-						colorOld = colorNew;
-					}
-					
-					try {
-						Thread.sleep(200);
-					} catch (InterruptedException e) {
-						Log.d("EXCEPTION", e.toString());
-						e.printStackTrace();
-					}
-				}
-			}
-		};
-		newThread = new Thread(runnable);
-		newThread.start();
+
 	}
 
 	@Override
@@ -290,23 +268,23 @@ public class CoreListActivity extends BaseActivity implements
 	}
 
 	private void panelOpened() {
-		Fragment eesdFrag = Ui.findFrag(this, R.id.eesd_container);
+		//Fragment eesdFrag = Ui.findFrag(this, R.id.eesd_container);
 
-		if (eesdFrag == null) {
-			log.v("Eesd fragment is null");
-		}
-
-		if (slidingLayout.isSlideable()) {
-			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
-			if (eesdFrag != null) {
-				eesdFrag.setHasOptionsMenu(false);
-			}
-		} else {
-			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
-			if (eesdFrag != null) {
-				eesdFrag.setHasOptionsMenu(true);
-			}
-		}
+//		if (eesdFrag == null) {
+//			log.v("Eesd fragment is null");
+//		}
+//
+//		if (slidingLayout.isSlideable()) {
+//			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
+//			if (eesdFrag != null) {
+//				eesdFrag.setHasOptionsMenu(false);
+//			}
+//		} else {
+//			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
+//			if (eesdFrag != null) {
+//				eesdFrag.setHasOptionsMenu(true);
+//			}
+//		}
 
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setDisplayHomeAsUpEnabled(false);
@@ -316,10 +294,10 @@ public class CoreListActivity extends BaseActivity implements
 
 	private void panelClosed() {
 		Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(false);
-		Fragment eesdFragment = Ui.findFrag(this, R.id.eesd_container);
-		if (eesdFragment != null) {
-			eesdFragment.setHasOptionsMenu(true);
-		}
+		//Fragment eesdFragment = Ui.findFrag(this, R.id.eesd_container);
+		//if (eesdFragment != null) {
+			//eesdFragment.setHasOptionsMenu(true);
+		//}
 
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -379,23 +357,84 @@ public class CoreListActivity extends BaseActivity implements
 		}
 	}
 
-	//EESD defined Functions
+	// EESD defined Functions
 	@Override
-	protected void onStop(){
-		super.onStop();
+	protected void onResume() {
+		isRunning = true;
+		Log.d("LIFE CYCLE", "onResume called");
+		super.onResume();
+		// EESD code
+		Runnable batteryRunnable = new Runnable() {
+			public void run() {
+				int batLevel = api.getBatteryLife(deviceById.id);
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e1) {
+					Log.d("EXCEPTION", e1.toString());
+					e1.printStackTrace();
+				}
+				while (isRunning) {
+					batLevel = api.getBatteryLife(deviceById.id);
+					Log.d("TEST", "batLevel is: " + Integer.toString(batLevel));
+					try {
+						Thread.sleep(5 * 1000);
+					} catch (InterruptedException e) {
+						Log.d("EXCEPTION", e.toString());
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		batteryThread = new Thread(batteryRunnable);
+		batteryThread.start();
+
+		Runnable colorRunnable = new Runnable() {
+			public void run() {
+				String sargb;
+				String srgb;
+				while (isRunning) {
+					if (colorOld != colorNew) {
+						sargb = Integer.toHexString(colorNew);
+						srgb = sargb.substring(2);
+						api.setRgbl(deviceById.id, srgb);
+						// Log.d("TESTER", sargb);
+						// Log.d("TESTER", srgb);
+						colorOld = colorNew;
+					}
+
+					try {
+						//Log.d("COLORTHREAD", "Sleeping!");
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						Log.d("EXCEPTION", e.toString());
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		colorThread = new Thread(colorRunnable);
+		colorThread.start();
+	}
+
+	@Override
+	protected void onPause() {
+		isRunning = false;
+		super.onPause();
+		Log.d("LIFE CYCLE", "onPause called");
 		try {
-			newThread.join();
-		} catch (InterruptedException e) {
+			colorThread.join();
+			batteryThread.join();
+		} catch (Exception e) {
 			Log.d("EXCEPTION", e.toString());
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void test(View view) {
 		int batteryLevel = api.getBatteryLife(deviceById.id);
 		Log.d("TEST", "batLevel1 is: " + Integer.toString(batteryLevel));
 	}
-	
+
 	public void toggleActivation(View view) {
 		api.toggleActivation(deviceById.id);
 	}

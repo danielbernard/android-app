@@ -62,6 +62,10 @@ public class ApiFacade {
 
 
 	private static ApiFacade instance = null;
+	
+	//EESD
+	private EesdBatteryResponseReceiver eesdReceiver;
+	private int batteryLevel;
 
 
 	public static ApiFacade getInstance(Context context) {
@@ -240,11 +244,12 @@ public class ApiFacade {
 	}
 	
 	public int getBatteryLife(String coreId) {
-		EesdBatteryResponseReceiver receiver = new EesdBatteryResponseReceiver(handler);
+		eesdReceiver = new EesdBatteryResponseReceiver(handler);
 		Bundle args = new Bundle();
 		args.putString("params", "bat_read");
-		SimpleSparkApiService.post(ctx, new String[] {"devices", coreId, "fn_r"}, args, receiver, null);
-		return receiver.batteryLevel;
+		SimpleSparkApiService.post(ctx, new String[] {"devices", coreId, "fn_r"}, args, eesdReceiver, null);
+		//SimpleSparkApiService.get(ctx, new String[] {"devices", coreId}, null, receiver, null);
+		return batteryLevel;
 	}
 
 	
@@ -292,7 +297,7 @@ public class ApiFacade {
 	//EESD ResponseReceiver Class
 	public class EesdBatteryResponseReceiver extends ApiResponseReceiver {
 
-		int batteryLevel;
+		//int batteryLevel;
 		
 		public EesdBatteryResponseReceiver(Handler handler) {
 			super(handler);
@@ -304,12 +309,12 @@ public class ApiFacade {
 		public void onRequestResponse(int statusCode, String jsonData) {
 			// TODO Auto-generated method stub
 			try {
-				Log.d("TEST", "attempting json creation");
+				//Log.d("TEST", "attempting json creation");
 				JSONObject json = new JSONObject(jsonData);
-				Log.d("TEST", "json created");
-				Log.d("TEST", json.toString());
+				//Log.d("TEST", "json created");
+				//Log.d("TEST", json.toString());
 				int batLevel = json.getInt("return_value");
-				Log.d("TEST", "String assigned" + Integer.toString(batLevel));
+				Log.d("TEST", "String assigned: " + Integer.toString(batLevel));
 					//JSONObject idObj = jsonArray.getJSONObject(i);
 					//String batLevel = idObj.getString("result");
 					//log.d("Got ID of core which was 'unheard' via mDNS/CoAP: " + batLevel);
