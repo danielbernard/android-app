@@ -8,10 +8,10 @@ package com.danh32.fontify;
 
 public final class R {
 	public static final class attr {
-		public static final int font = 0x7f010000;
+		public static final int font = 0x7f01000b;
 	}
 	public static final class styleable {
-		public static final int[] Fontify = { 0x7f010000 };
+		public static final int[] Fontify = { 0x7f01000b };
 		public static final int Fontify_font = 0;
 	}
 }
