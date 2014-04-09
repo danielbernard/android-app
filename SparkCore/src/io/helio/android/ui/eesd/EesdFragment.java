@@ -22,8 +22,6 @@ public class EesdFragment  extends BaseFragment {
 	
 	public static final String ARG_DEVICE_ID = "ARG_DEVICE_ID";
 	
-	//private Device device;
-	
 	public static EesdFragment newInstance(String deviceId) {
 		Bundle arguments = new Bundle();
 		arguments.putString(EesdFragment.ARG_DEVICE_ID, deviceId);
@@ -34,14 +32,6 @@ public class EesdFragment  extends BaseFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-	}
-
-
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.tinker, menu);
-		inflater.inflate(R.menu.core_row_overflow, menu);
 	}
 
 	@Override

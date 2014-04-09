@@ -3,10 +3,11 @@
 
     <item
         android:id="@+id/action_log_out"
-        android:orderInCategory="200"
+        android:orderInCategory="201"
         android:showAsAction="never"
         android:title="@string/log_out"/>
-    <item
+    
+   <!--  <item
         android:orderInCategory="200"
         android:showAsAction="never"
         android:title="@string/help_">
@@ -31,5 +32,6 @@
                 android:title="@string/report_a_bug"/>
         </menu>
     </item>
+    -->
 
 </menu>

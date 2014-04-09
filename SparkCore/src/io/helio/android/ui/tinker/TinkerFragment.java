@@ -146,7 +146,7 @@ public class TinkerFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.tinker, menu);
+		inflater.inflate(R.menu.eesd_menu, menu);
 		inflater.inflate(R.menu.core_row_overflow, menu);
 	}
 
