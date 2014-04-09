@@ -171,29 +171,29 @@ public abstract class BaseActivity extends Activity {
 				showLogOutConfirmation();
 				return true;
 
-			case R.id.action_support:
-				openUri(R.string.uri_support);
-				return true;
-
-			case R.id.action_spark_homepage:
-				openUri(R.string.uri_spark_homepage);
-				return true;
-
-			case R.id.action_build_your_own_core_app:
-				openUri(R.string.uri_build_your_own_app);
-				return true;
-
-			case R.id.action_documentation:
-				openUri(R.string.uri_docs);
-				return true;
-
-			case R.id.action_contribute:
-				openUri(R.string.uri_contribute);
-				return true;
-
-			case R.id.action_report_a_bug:
-				openUri(R.string.uri_report_a_bug);
-				return true;
+//			case R.id.action_support:
+//				openUri(R.string.uri_support);
+//				return true;
+//
+//			case R.id.action_spark_homepage:
+//				openUri(R.string.uri_spark_homepage);
+//				return true;
+//
+//			case R.id.action_build_your_own_core_app:
+//				openUri(R.string.uri_build_your_own_app);
+//				return true;
+//
+//			case R.id.action_documentation:
+//				openUri(R.string.uri_docs);
+//				return true;
+//
+//			case R.id.action_contribute:
+//				openUri(R.string.uri_contribute);
+//				return true;
+//
+//			case R.id.action_report_a_bug:
+//				openUri(R.string.uri_report_a_bug);
+//				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+     <item
+        android:id="@+id/action_bat_level"
+        android:enabled="true"
+        android:showAsAction="ifRoom"
+        android:title="BAT:" />
+         
+    <item
+        android:id="@+id/action_turn_on_off"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="Turn On/Off"/>
+    
+    <item
+        android:id="@+id/action_rainbow"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="Rainbow"/>
+    
+    <item
+        android:id="@+id/action_blink_led"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="Blink LED"/>
+    
+    <item
+        android:id="@+id/action_set_up_a_new_core"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="@string/reconfigure_core"/>
+    
+    <item
+        android:id="@+id/action_rename_core"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="@string/rename_core"/>
+
+</menu>

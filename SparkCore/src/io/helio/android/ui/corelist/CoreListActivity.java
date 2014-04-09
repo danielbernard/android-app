@@ -3,7 +3,6 @@ package io.helio.android.ui.corelist;
 import static org.solemnsilence.util.Py.truthy;
 import io.helio.android.R;
 import io.helio.android.app.DeviceState;
-import io.helio.android.cloud.ApiFacade;
 import io.helio.android.cloud.api.Device;
 import io.helio.android.smartconfig.SmartConfigState;
 import io.helio.android.ui.BaseActivity;
@@ -21,11 +20,15 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Toast;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
@@ -49,6 +52,7 @@ public class CoreListActivity extends BaseActivity implements
 	private String selectedItemId;
 
 	// EESD Global Variables
+	private int batLevel;
 	private ColorPicker colorPicker;
 	private SaturationBar sBar;
 	private ValueBar vBar;
@@ -57,15 +61,22 @@ public class CoreListActivity extends BaseActivity implements
 	private Thread colorThread;
 	private Thread batteryThread;
 	private boolean isRunning;
-
-	// ApiFacade.EesdBatteryResponseReceiver receiver =
-	// ApiFacade.EesdBatteryResponseReceiver(ApiFacade.handler);
+	
+	//EESD Handler to redraw menu for batterylevel updates
+	@SuppressLint("HandlerLeak")
+	protected Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message message) {
+			invalidateOptionsMenu();
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_core_list);
 
+		//EESD
 		colorPicker = (ColorPicker) findViewById(R.id.picker);
 		sBar = (SaturationBar) findViewById(R.id.sbar);
 		vBar = (ValueBar) findViewById(R.id.vbar);
@@ -82,8 +93,8 @@ public class CoreListActivity extends BaseActivity implements
 				// newThread.notify();
 			}
 		};
-
 		colorPicker.setOnColorChangedListener(cListener);
+		//end EESD
 
 		String deviceIdToSelect = null;
 		boolean openPane = true;
@@ -208,12 +219,33 @@ public class CoreListActivity extends BaseActivity implements
 		if (selectedItemId == null && !DeviceState.getKnownDevices().isEmpty()) {
 			onItemSelected(DeviceState.getKnownDevices().get(0).id);
 		}
-
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		// EESD
+		// The following code should handle the menu button presses
+		Log.d("MENU TEST", "Menu selected");
 		switch (item.getItemId()) {
+		
+		case R.id.action_bat_level:
+			Toast.makeText(getApplicationContext(), "BAT:" + Integer.toString(batLevel) + "%", Toast.LENGTH_SHORT).show();
+			return true;
+
+		case R.id.action_turn_on_off:
+			api.toggleActivation(deviceById.id);
+			return true;
+
+		case R.id.action_rainbow:
+			api.rainbow(deviceById.id);
+			return true;
+
+		case R.id.action_blink_led:
+			String color = "630063";
+			String rate = "0500";
+			int iter = 2;
+			api.blinkLed(deviceById.id, color, rate, iter);
+			return true;
 
 		case R.id.action_set_up_a_new_core:
 			startActivity(new Intent(this, SmartConfigActivity.class));
@@ -268,23 +300,23 @@ public class CoreListActivity extends BaseActivity implements
 	}
 
 	private void panelOpened() {
-		//Fragment eesdFrag = Ui.findFrag(this, R.id.eesd_container);
+		Fragment eesdFrag = Ui.findFrag(this, R.id.eesd_container);
 
-//		if (eesdFrag == null) {
-//			log.v("Eesd fragment is null");
-//		}
-//
-//		if (slidingLayout.isSlideable()) {
-//			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
-//			if (eesdFrag != null) {
-//				eesdFrag.setHasOptionsMenu(false);
-//			}
-//		} else {
-//			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
-//			if (eesdFrag != null) {
-//				eesdFrag.setHasOptionsMenu(true);
-//			}
-//		}
+		if (eesdFrag == null) {
+			log.v("Eesd fragment is null");
+		}
+
+		if (slidingLayout.isSlideable()) {
+			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
+			if (eesdFrag != null) {
+				eesdFrag.setHasOptionsMenu(false);
+			}
+		} else {
+			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
+			if (eesdFrag != null) {
+				eesdFrag.setHasOptionsMenu(true);
+			}
+		}
 
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setDisplayHomeAsUpEnabled(false);
@@ -294,10 +326,10 @@ public class CoreListActivity extends BaseActivity implements
 
 	private void panelClosed() {
 		Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(false);
-		//Fragment eesdFragment = Ui.findFrag(this, R.id.eesd_container);
-		//if (eesdFragment != null) {
-			//eesdFragment.setHasOptionsMenu(true);
-		//}
+		Fragment eesdFragment = Ui.findFrag(this, R.id.eesd_container);
+		if (eesdFragment != null) {
+			eesdFragment.setHasOptionsMenu(true);
+		}
 
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -357,16 +389,29 @@ public class CoreListActivity extends BaseActivity implements
 		}
 	}
 
-	// EESD defined Functions
+	// EESD All following defined Functions
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.eesd_menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu){
+		menu.findItem(R.id.action_bat_level).setTitle("BAT:" + Integer.toString(batLevel) + "%");
+		return super.onPrepareOptionsMenu(menu);
+	}
+	
 	@Override
 	protected void onResume() {
-		isRunning = true;
-		Log.d("LIFE CYCLE", "onResume called");
 		super.onResume();
+		isRunning = true;
 		// EESD code
+		//Thread handles the changing battery level on the ball
 		Runnable batteryRunnable = new Runnable() {
 			public void run() {
-				int batLevel = api.getBatteryLife(deviceById.id);
+				batLevel = api.getBatteryLife(deviceById.id);
 				try {
 					Thread.sleep(5000);
 				} catch (InterruptedException e1) {
@@ -376,6 +421,7 @@ public class CoreListActivity extends BaseActivity implements
 				while (isRunning) {
 					batLevel = api.getBatteryLife(deviceById.id);
 					Log.d("TEST", "batLevel is: " + Integer.toString(batLevel));
+					handler.sendMessage(new Message());
 					try {
 						Thread.sleep(5 * 1000);
 					} catch (InterruptedException e) {
@@ -388,6 +434,7 @@ public class CoreListActivity extends BaseActivity implements
 		batteryThread = new Thread(batteryRunnable);
 		batteryThread.start();
 
+		//Thread handles the colorchanges on the colorwheel
 		Runnable colorRunnable = new Runnable() {
 			public void run() {
 				String sargb;
@@ -397,13 +444,9 @@ public class CoreListActivity extends BaseActivity implements
 						sargb = Integer.toHexString(colorNew);
 						srgb = sargb.substring(2);
 						api.setRgbl(deviceById.id, srgb);
-						// Log.d("TESTER", sargb);
-						// Log.d("TESTER", srgb);
-						colorOld = colorNew;
 					}
 
 					try {
-						//Log.d("COLORTHREAD", "Sleeping!");
 						Thread.sleep(200);
 					} catch (InterruptedException e) {
 						Log.d("EXCEPTION", e.toString());
@@ -419,7 +462,6 @@ public class CoreListActivity extends BaseActivity implements
 	@Override
 	protected void onPause() {
 		isRunning = false;
-		super.onPause();
 		Log.d("LIFE CYCLE", "onPause called");
 		try {
 			colorThread.join();
@@ -428,11 +470,8 @@ public class CoreListActivity extends BaseActivity implements
 			Log.d("EXCEPTION", e.toString());
 			e.printStackTrace();
 		}
-	}
-
-	public void test(View view) {
-		int batteryLevel = api.getBatteryLife(deviceById.id);
-		Log.d("TEST", "batLevel1 is: " + Integer.toString(batteryLevel));
+		api.saveColor(deviceById.id);
+		super.onPause();
 	}
 
 	public void toggleActivation(View view) {

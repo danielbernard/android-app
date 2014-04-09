@@ -24,7 +24,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -302,7 +301,7 @@ public class ApiFacade {
 		public EesdBatteryResponseReceiver(Handler handler) {
 			super(handler);
 			//batteryLevel = 0;
-			Log.d("TEST", "EesdBatteryResponseReceiver created");
+			//Log.d("TEST", "EesdBatteryResponseReceiver created");
 		}
 
 		@Override
@@ -314,7 +313,7 @@ public class ApiFacade {
 				//Log.d("TEST", "json created");
 				//Log.d("TEST", json.toString());
 				int batLevel = json.getInt("return_value");
-				Log.d("TEST", "String assigned: " + Integer.toString(batLevel));
+				//Log.d("TEST", "String assigned: " + Integer.toString(batLevel));
 					//JSONObject idObj = jsonArray.getJSONObject(i);
 					//String batLevel = idObj.getString("result");
 					//log.d("Got ID of core which was 'unheard' via mDNS/CoAP: " + batLevel);

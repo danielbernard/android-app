@@ -21,6 +21,7 @@
         android:orientation="vertical"
         android:paddingTop="?android:attr/actionBarSize" >
 
+     <!-- 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="96dip" >
@@ -137,6 +138,7 @@
                 android:background="?android:attr/dividerVertical" />
         </RelativeLayout>
 
+-->
 
         <com.larswerkman.holocolorpicker.ColorPicker
             android:id="@+id/picker"
