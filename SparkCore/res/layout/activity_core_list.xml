@@ -12,153 +12,36 @@
         android:layout_gravity="left"
         tools:layout="@layout/fragment_core_list" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/eesd_container"
         android:layout_width="450dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/sign_up_background_bitmap"
         android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:paddingTop="?android:attr/actionBarSize" >
-
-     <!-- 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="96dip" >
-            
-            <Button
-                android:id="@+id/button_rainbow"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:onClick="rainbow"
-                android:text="Rainbow" />
-            
-            <View
-                android:id="@+id/eesd_sub_split1"
-                android:layout_width="1dip"
-                android:layout_height="40dip"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@id/button_rainbow"
-                android:layout_marginBottom="4dip"
-                android:layout_marginTop="4dip"
-                android:background="?android:attr/dividerVertical" />
-            
-            <View
-                android:id="@+id/eesd_sub_split2"
-                android:layout_width="1dip"
-                android:layout_height="40dip"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@id/button_rainbow"
-                android:layout_marginBottom="4dip"
-                android:layout_marginTop="4dip"
-                android:background="?android:attr/dividerVertical" />
-            
-            <Button
-                android:id="@+id/button_toggle_activation"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@id/eesd_sub_split1"
-                android:onClick="toggleActivation"
-                android:text="Turn On/Off" />
-
-            <Button
-                android:id="@+id/button_blink_led"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@id/eesd_sub_split2"
-                android:onClick="blinkLed"
-                android:text="Blink LED" />
-
-            <View
-                android:id="@+id/border_top"
-                android:layout_width="match_parent"
-                android:layout_height="1dip"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="4dip"
-                android:layout_marginRight="4dip"
-                android:background="?android:attr/dividerVertical" />
-            
-            <View
-                android:id="@+id/border_middle"
-                android:layout_width="match_parent"
-                android:layout_height="1dip"
-                android:layout_below="@id/button_toggle_activation"
-                android:layout_marginLeft="4dip"
-                android:layout_marginRight="4dip"
-                android:background="?android:attr/dividerVertical" />
-
-            <View
-                android:id="@+id/eesd_sub_split3"
-                android:layout_width="1dip"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/button_toggle_activation"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="4dip"
-                android:layout_marginTop="4dip"
-                android:background="?android:attr/dividerVertical" />
-
-            <Button
-                android:id="@+id/button_set_color"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/button_toggle_activation"
-                android:layout_toLeftOf="@id/eesd_sub_split3"
-                android:onClick="test"
-                android:text="TEST" />
-
-            <Button
-                android:id="@+id/button_save_color"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/button_toggle_activation"
-                android:layout_toRightOf="@id/eesd_sub_split3"
-                android:onClick="saveColor"
-                android:text="Save Color" />
-            <View
-                android:id="@+id/border_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="1dip"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="4dip"
-                android:layout_marginRight="4dip"
-                android:background="?android:attr/dividerVertical" />
-        </RelativeLayout>
-
--->
 
         <com.larswerkman.holocolorpicker.ColorPicker
             android:id="@+id/picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_centerInParent="true" />
 
         <com.larswerkman.holocolorpicker.SaturationBar
             android:id="@+id/sbar"
             android:layout_width="322dp"
             android:layout_height="112dp"
-            android:layout_gravity="center"
+            android:layout_below="@id/picker"
             android:layout_margin="8dip" />
 
         <com.larswerkman.holocolorpicker.ValueBar
             android:id="@+id/vbar"
             android:layout_width="322dp"
             android:layout_height="112dp"
-            android:layout_gravity="center"
+            android:layout_below="@id/sbar"
             android:layout_margin="8dip" />       
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.v4.widget.SlidingPaneLayout>

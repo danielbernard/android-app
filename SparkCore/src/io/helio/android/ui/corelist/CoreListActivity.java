@@ -491,8 +491,4 @@ public class CoreListActivity extends BaseActivity implements
 		Log.d("button", "blinkLed called");
 	}
 
-	public void saveColor(View view) {
-		api.saveColor(deviceById.id);
-		Log.d("button", "saveColor called");
-	}
 }
