@@ -70,7 +70,15 @@
             android:launchMode="singleTop"
             android:theme="@style/Theme.CustomTypefaceGradientActionBar.Overlay.NoUp" />
 
-        <!-- Services -->
+        <!-- Services 
+        <service
+            android:name="io.helio.android.ui.eesd.EesdnotificationListener"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+            <intent-filter 
+                <action android:name="android.service.notification.NotificationListenerService"
+                    </action>
+            </intent-filter>
+        </service> -->
         <service
             android:name="io.helio.android.cloud.requestservice.SimpleSparkApiService"
             android:exported="false" />

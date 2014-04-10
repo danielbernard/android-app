@@ -8,6 +8,7 @@ import io.helio.android.smartconfig.SmartConfigState;
 import io.helio.android.ui.BaseActivity;
 import io.helio.android.ui.eesd.EesdFragment;
 import io.helio.android.ui.smartconfig.SmartConfigActivity;
+import io.helio.android.ui.util.NamingHelper;
 import io.helio.android.ui.util.Ui;
 
 import org.solemnsilence.util.TLog;
@@ -90,7 +91,6 @@ public class CoreListActivity extends BaseActivity implements
 				// Log.d("PICKER", Integer.toHexString(color));
 				colorPicker.setOldCenterColor(color);
 				colorNew = color;
-				// newThread.notify();
 			}
 		};
 		colorPicker.setOnColorChangedListener(cListener);
@@ -224,7 +224,7 @@ public class CoreListActivity extends BaseActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// EESD
-		// The following code should handle the menu button presses
+		// The following code handles the menu button presses
 		Log.d("MENU TEST", "Menu selected");
 		switch (item.getItemId()) {
 		
@@ -249,6 +249,10 @@ public class CoreListActivity extends BaseActivity implements
 
 		case R.id.action_set_up_a_new_core:
 			startActivity(new Intent(this, SmartConfigActivity.class));
+			return true;
+		
+		case R.id.action_rename_core:
+			new NamingHelper(this, api).showRenameDialog(deviceById);
 			return true;
 
 		case android.R.id.home:
@@ -406,6 +410,7 @@ public class CoreListActivity extends BaseActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
+		Log.d("LIFE CYCLE", "onResume called");
 		isRunning = true;
 		// EESD code
 		//Thread handles the changing battery level on the ball
@@ -420,7 +425,7 @@ public class CoreListActivity extends BaseActivity implements
 				}
 				while (isRunning) {
 					batLevel = api.getBatteryLife(deviceById.id);
-					Log.d("TEST", "batLevel is: " + Integer.toString(batLevel));
+					//Log.d("TEST", "batLevel is: " + Integer.toString(batLevel));
 					handler.sendMessage(new Message());
 					try {
 						Thread.sleep(5 * 1000);
@@ -444,6 +449,9 @@ public class CoreListActivity extends BaseActivity implements
 						sargb = Integer.toHexString(colorNew);
 						srgb = sargb.substring(2);
 						api.setRgbl(deviceById.id, srgb);
+						//Log.d("COLORTHREAD", "colorOld = " + Integer.toHexString(colorOld));
+						//Log.d("COLORTHREAD", "colorNew = " + Integer.toHexString(colorNew));
+						colorOld = colorNew;
 					}
 
 					try {
@@ -470,7 +478,7 @@ public class CoreListActivity extends BaseActivity implements
 			Log.d("EXCEPTION", e.toString());
 			e.printStackTrace();
 		}
-		api.saveColor(deviceById.id);
+		//api.saveColor(deviceById.id);
 		super.onPause();
 	}
 
