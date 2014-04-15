@@ -23,6 +23,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -49,7 +51,7 @@ public class CoreListActivity extends BaseActivity implements
 
 	private LayerDrawable actionBarBackgroundDrawable;
 	private ActionBar actionBar;
-	private SlidingPaneLayout slidingLayout;
+	private DrawerLayout drawerLayout;
 	private String selectedItemId;
 
 	// EESD Global Variables
@@ -145,17 +147,17 @@ public class CoreListActivity extends BaseActivity implements
 
 		initActionBar();
 
-		slidingLayout = (SlidingPaneLayout) findViewById(R.id.sliding_pane_layout);
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		slidingLayout.setPanelSlideListener(new SliderListener());
-		slidingLayout.getViewTreeObserver().addOnGlobalLayoutListener(
+//		drawerLayout.setDrawerListener((DrawerListener) new SliderListener());
+		drawerLayout.getViewTreeObserver().addOnGlobalLayoutListener(
 				new InitialLayoutListener());
 
-		if (openPane) {
-			slidingLayout.openPane();
-		} else {
-			slidingLayout.closePane();
-		}
+//		if (openPane) {
+//			drawerLayout.openDrawer();
+//		} else {
+//			drawerLayout.closeDrawer();
+//		}
 
 		if (deviceIdToSelect != null) {
 			onItemSelected(deviceIdToSelect);
@@ -205,7 +207,7 @@ public class CoreListActivity extends BaseActivity implements
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putBoolean(STATE_PANE_OPEN, slidingLayout.isOpen());
+//		outState.putBoolean(STATE_PANE_OPEN, drawerLayout.isOpen());
 		if (selectedItemId != null) {
 			outState.putString(STATE_SELECTED_DEVICE_ID, selectedItemId);
 		}
@@ -255,11 +257,11 @@ public class CoreListActivity extends BaseActivity implements
 			new NamingHelper(this, api).showRenameDialog(deviceById);
 			return true;
 
-		case android.R.id.home:
-			if (!slidingLayout.isOpen()) {
-				slidingLayout.openPane();
-				return true;
-			}
+//		case android.R.id.home:
+//			if (!drawerLayout.isOpen()) {
+//				drawerLayout.openDrawer();
+//				return true;
+//			}
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -273,7 +275,7 @@ public class CoreListActivity extends BaseActivity implements
 	public void onItemSelected(String id) {
 		// same item selected, just close the pane
 		if (id.equals(selectedItemId)) {
-			slidingLayout.closePane();
+//			drawerLayout.closeDrawer();
 			return;
 		}
 
@@ -287,39 +289,39 @@ public class CoreListActivity extends BaseActivity implements
 
 		CoreListFragment listFrag = Ui.findFrag(this, R.id.core_list);
 		listFrag.setActivatedItem(selectedItemId);
-		slidingLayout.closePane();
+//		drawerLayout.closeDrawer();
 	}
 
 	@Override
 	public void onBackPressed() {
-		if (!slidingLayout.isOpen()) {
-			slidingLayout.openPane();
-		} else {
+//		if (!drawerLayout.isOpen()) {
+//			drawerLayout.openDrawer();
+//		} else {
 			super.onBackPressed();
-		}
+//		}
 	}
 
 	protected boolean shouldShowUpButtonWhenDevicesListNotEmpty() {
 		return false;
 	}
 
-	private void panelOpened() {
+	private void drawerOpened() {
 		Fragment eesdFrag = Ui.findFrag(this, R.id.eesd_container);
 
 		if (eesdFrag == null) {
 			log.v("Eesd fragment is null");
 		}
 
-		if (slidingLayout.isSlideable()) {
+//		if (drawerLayout.isSlideable()) {
 			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
 			if (eesdFrag != null) {
 				eesdFrag.setHasOptionsMenu(false);
-			}
-		} else {
-			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
-			if (eesdFrag != null) {
-				eesdFrag.setHasOptionsMenu(true);
-			}
+//			}
+//		} else {
+//			Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(true);
+//			if (eesdFrag != null) {
+//				eesdFrag.setHasOptionsMenu(true);
+//			}
 		}
 
 		actionBar.setHomeButtonEnabled(false);
@@ -328,7 +330,7 @@ public class CoreListActivity extends BaseActivity implements
 		setCustomActionBarTitle(getString(R.string.app_name_lower));
 	}
 
-	private void panelClosed() {
+	private void drawerClosed() {
 		Ui.findFrag(this, R.id.core_list).setHasOptionsMenu(false);
 		Fragment eesdFragment = Ui.findFrag(this, R.id.eesd_container);
 		if (eesdFragment != null) {
@@ -350,23 +352,28 @@ public class CoreListActivity extends BaseActivity implements
 		}
 	}
 
-	private class SliderListener extends
-			SlidingPaneLayout.SimplePanelSlideListener {
+	private class MyDrawerListener implements DrawerLayout.DrawerListener {
 
 		@Override
-		public void onPanelOpened(View panel) {
-			panelOpened();
+		public void onDrawerOpened(View drawer) {
+			drawerOpened();
 		}
 
 		@Override
-		public void onPanelClosed(View panel) {
-			panelClosed();
+		public void onDrawerClosed(View drawer) {
+			drawerClosed();
 		}
 
 		@Override
-		public void onPanelSlide(View view, float v) {
+		public void onDrawerSlide(View view, float v) {
 			final int newAlpha = (int) (v * 255 * 0.5);
 			actionBarBackgroundDrawable.getDrawable(1).setAlpha(newAlpha);
+		}
+
+		@Override
+		public void onDrawerStateChanged(int arg0) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 
@@ -377,17 +384,17 @@ public class CoreListActivity extends BaseActivity implements
 		@SuppressLint("NewApi")
 		@Override
 		public void onGlobalLayout() {
-			if (slidingLayout.isSlideable() && !slidingLayout.isOpen()) {
-				panelClosed();
-			} else {
-				panelOpened();
-			}
+//			if (slidingLayout.isSlideable() && !slidingLayout.isOpen()) {
+//				panelClosed();
+//			} else {
+//				panelOpened();
+//			}
 
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-				slidingLayout.getViewTreeObserver()
+				drawerLayout.getViewTreeObserver()
 						.removeOnGlobalLayoutListener(this);
 			} else {
-				slidingLayout.getViewTreeObserver()
+				drawerLayout.getViewTreeObserver()
 						.removeGlobalOnLayoutListener(this);
 			}
 		}
