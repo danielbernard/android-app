@@ -250,6 +250,11 @@ public class ApiFacade {
 		//SimpleSparkApiService.get(ctx, new String[] {"devices", coreId}, null, receiver, null);
 		return batteryLevel;
 	}
+	public void notifyUser(String coreId, String notifType, String color) {
+		Bundle args = new Bundle();
+		args.putString("params", "notif," + notifType + "," + color);
+		SimpleSparkApiService.post(ctx,  new String[] { "devices", coreId , "fn_r"}, args, null, null);
+	}
 
 	
 	/**
