@@ -16,7 +16,10 @@ import org.solemnsilence.util.TLog;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
@@ -36,7 +39,7 @@ import com.larswerkman.holocolorpicker.SaturationBar;
 import com.larswerkman.holocolorpicker.ValueBar;
 
 public class CoreListActivity extends BaseActivity implements
-		CoreListFragment.Callbacks {
+CoreListFragment.Callbacks {
 	public static Device deviceById;
 	private static final TLog log = new TLog(CoreListActivity.class);
 
@@ -62,7 +65,8 @@ public class CoreListActivity extends BaseActivity implements
 	private Thread colorThread;
 	private Thread batteryThread;
 	private boolean isRunning;
-	
+	private NotificationReceiver nReceiver;
+
 	//EESD Handler to redraw menu for batterylevel updates
 	@SuppressLint("HandlerLeak")
 	protected Handler handler = new Handler() {
@@ -94,6 +98,11 @@ public class CoreListActivity extends BaseActivity implements
 			}
 		};
 		colorPicker.setOnColorChangedListener(cListener);
+		
+		nReceiver = new NotificationReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("io.helio.android.ui.eesd.NOTIFICATION_LISTENER");
+		registerReceiver(nReceiver,filter);
 		//end EESD
 
 		String deviceIdToSelect = null;
@@ -227,7 +236,7 @@ public class CoreListActivity extends BaseActivity implements
 		// The following code handles the menu button presses
 		Log.d("MENU TEST", "Menu selected");
 		switch (item.getItemId()) {
-		
+
 		case R.id.action_bat_level:
 			Toast.makeText(getApplicationContext(), "BAT:" + Integer.toString(batLevel) + "%", Toast.LENGTH_SHORT).show();
 			return true;
@@ -250,7 +259,7 @@ public class CoreListActivity extends BaseActivity implements
 		case R.id.action_set_up_a_new_core:
 			startActivity(new Intent(this, SmartConfigActivity.class));
 			return true;
-		
+
 		case R.id.action_rename_core:
 			new NamingHelper(this, api).showRenameDialog(deviceById);
 			return true;
@@ -282,8 +291,8 @@ public class CoreListActivity extends BaseActivity implements
 
 		selectedItemId = id;
 		getFragmentManager().beginTransaction()
-				.replace(R.id.eesd_container, EesdFragment.newInstance(id))
-				.commit();
+		.replace(R.id.eesd_container, EesdFragment.newInstance(id))
+		.commit();
 
 		CoreListFragment listFrag = Ui.findFrag(this, R.id.core_list);
 		listFrag.setActivatedItem(selectedItemId);
@@ -295,7 +304,8 @@ public class CoreListActivity extends BaseActivity implements
 		if (!slidingLayout.isOpen()) {
 			slidingLayout.openPane();
 		} else {
-			super.onBackPressed();
+			slidingLayout.closePane();
+			//super.onBackPressed();
 		}
 	}
 
@@ -351,7 +361,7 @@ public class CoreListActivity extends BaseActivity implements
 	}
 
 	private class SliderListener extends
-			SlidingPaneLayout.SimplePanelSlideListener {
+	SlidingPaneLayout.SimplePanelSlideListener {
 
 		@Override
 		public void onPanelOpened(View panel) {
@@ -371,7 +381,7 @@ public class CoreListActivity extends BaseActivity implements
 	}
 
 	private class InitialLayoutListener implements
-			ViewTreeObserver.OnGlobalLayoutListener {
+	ViewTreeObserver.OnGlobalLayoutListener {
 
 		@SuppressWarnings("deprecation")
 		@SuppressLint("NewApi")
@@ -385,10 +395,10 @@ public class CoreListActivity extends BaseActivity implements
 
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 				slidingLayout.getViewTreeObserver()
-						.removeOnGlobalLayoutListener(this);
+				.removeOnGlobalLayoutListener(this);
 			} else {
 				slidingLayout.getViewTreeObserver()
-						.removeGlobalOnLayoutListener(this);
+				.removeGlobalOnLayoutListener(this);
 			}
 		}
 	}
@@ -400,13 +410,13 @@ public class CoreListActivity extends BaseActivity implements
 		getMenuInflater().inflate(R.menu.eesd_menu, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu){
 		menu.findItem(R.id.action_bat_level).setTitle("BAT:" + Integer.toString(batLevel) + "%");
 		return super.onPrepareOptionsMenu(menu);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -465,6 +475,7 @@ public class CoreListActivity extends BaseActivity implements
 		};
 		colorThread = new Thread(colorRunnable);
 		colorThread.start();
+		
 	}
 
 	@Override
@@ -480,6 +491,12 @@ public class CoreListActivity extends BaseActivity implements
 		}
 		//api.saveColor(deviceById.id);
 		super.onPause();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		unregisterReceiver(nReceiver);
+		super.onDestroy();
 	}
 
 	public void toggleActivation(View view) {
@@ -497,6 +514,35 @@ public class CoreListActivity extends BaseActivity implements
 		int iter = 2;
 		api.blinkLed(deviceById.id, color, rate, iter);
 		Log.d("button", "blinkLed called");
+	}
+	
+	class NotificationReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context ctx, Intent intent) {
+			String pkgName = intent.getStringExtra("notification_package_name");
+			int notifId = intent.getIntExtra("notification_id",0);
+			Log.d("NOTIFY", pkgName);
+			String notificationColor = "FF0000";
+			String notificationType = "b";
+			// 20001 is the notification ID for opening a FB ChatHead
+			// 6 is the notification ID for Google's Quick Search which comes up on occasion
+			// Might want to look into an alternate method for avoiding these options
+			if ((notifId != 20001) && (notifId != 6)) {
+				switch(pkgName) {
+				case "com.google.android.apps.googlevoice":
+					notificationColor = "00FF00"; 
+					break;
+				case "com.snapchat.android":
+					notificationColor = "FFCC00";
+					break;
+				case "com.facebook.orca":
+					notificationColor = "3B5999";
+					break;
+				}
+				Log.d("NOTIFY", "pkgName: " + pkgName + "\n" + "Color  : " + notificationColor);
+				api.notifyUser(deviceById.id, notificationType, notificationColor);
+			}
+		}
 	}
 
 }

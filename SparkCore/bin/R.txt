@@ -2,18 +2,18 @@ int animator pin_background_end 0x7f040000
 int animator pin_background_go_dark 0x7f040001
 int animator pin_background_start 0x7f040002
 int array core_colors 0x7f0a0000
-int attr bar_length 0x7f010007
-int attr bar_orientation_horizontal 0x7f01000a
-int attr bar_pointer_halo_radius 0x7f010009
-int attr bar_pointer_radius 0x7f010008
-int attr bar_thickness 0x7f010006
-int attr color_center_halo_radius 0x7f010003
-int attr color_center_radius 0x7f010002
-int attr color_pointer_halo_radius 0x7f010005
-int attr color_pointer_radius 0x7f010004
-int attr color_wheel_radius 0x7f010000
-int attr color_wheel_thickness 0x7f010001
-int attr font 0x7f01000b
+int attr bar_length 0x7f010008
+int attr bar_orientation_horizontal 0x7f01000b
+int attr bar_pointer_halo_radius 0x7f01000a
+int attr bar_pointer_radius 0x7f010009
+int attr bar_thickness 0x7f010007
+int attr color_center_halo_radius 0x7f010004
+int attr color_center_radius 0x7f010003
+int attr color_pointer_halo_radius 0x7f010006
+int attr color_pointer_radius 0x7f010005
+int attr color_wheel_radius 0x7f010001
+int attr color_wheel_thickness 0x7f010002
+int attr font 0x7f010000
 int bool lock_to_portrait 0x7f070001
 int bool use_staging 0x7f070000
 int color alizarin 0x7f090003
@@ -329,18 +329,18 @@ int style TinkerSeekBar 0x7f0d0015
 int style TinkerSelectButton 0x7f0d0012
 int style TinkerSelectButtonBg 0x7f0d0013
 int style TinkerSelectColorBox 0x7f0d0011
-int[] styleable ColorBars { 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a }
+int[] styleable ColorBars { 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b }
 int styleable ColorBars_bar_length 1
 int styleable ColorBars_bar_orientation_horizontal 4
 int styleable ColorBars_bar_pointer_halo_radius 3
 int styleable ColorBars_bar_pointer_radius 2
 int styleable ColorBars_bar_thickness 0
-int[] styleable ColorPicker { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005 }
+int[] styleable ColorPicker { 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006 }
 int styleable ColorPicker_color_center_halo_radius 3
 int styleable ColorPicker_color_center_radius 2
 int styleable ColorPicker_color_pointer_halo_radius 5
 int styleable ColorPicker_color_pointer_radius 4
 int styleable ColorPicker_color_wheel_radius 0
 int styleable ColorPicker_color_wheel_thickness 1
-int[] styleable Fontify { 0x7f01000b }
+int[] styleable Fontify { 0x7f010000 }
 int styleable Fontify_font 0
