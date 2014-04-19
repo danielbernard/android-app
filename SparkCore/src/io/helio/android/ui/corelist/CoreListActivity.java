@@ -532,6 +532,10 @@ CoreListFragment.Callbacks {
 				case "com.google.android.apps.googlevoice":
 					notificationColor = "00FF00"; 
 					break;
+				// Not sure if this is the correct package name for the Messenger application
+				case "com.android.mms" :
+					notificationColor = "00FF00";
+					break;
 				case "com.snapchat.android":
 					notificationColor = "FFCC00";
 					break;
