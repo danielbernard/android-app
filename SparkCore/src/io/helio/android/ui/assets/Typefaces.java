@@ -12,14 +12,14 @@ public class Typefaces {
 
 	// NOTE: this is tightly coupled to the filenames in assets/fonts
 	public static enum Style {
-		BOLD("gotham_bold.otf"),
-		BOLD_ITALIC("gotham_bold_ita.otf"),
-		BOOK("gotham_book.otf"),
-		BOOK_ITALIC("gotham_book_ita.otf"),
-		LIGHT("gotham_light.otf"),
-		LIGHT_ITALIC("gotham_light_ita.otf"),
-		MEDIUM("gotham_medium.otf"),
-		MEDIUM_ITALIC("gotham_medium_ita.otf");
+		BOLD("roboto_bold.otf"),
+		BOLD_ITALIC("roboto_bolditalics.otf"),
+		BOOK("roboto_regular.otf"),
+		BOOK_ITALIC("roboto_regularitalic.otf"),
+		LIGHT("roboto_light.otf"),
+		LIGHT_ITALIC("roboto_lightitalic.otf"),
+		MEDIUM("roboto_medium.otf"),
+		MEDIUM_ITALIC("roboto_mediumitalic.otf");
 
 		public final String fileName;
 

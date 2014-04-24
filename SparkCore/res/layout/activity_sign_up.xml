@@ -22,12 +22,12 @@
             android:paddingTop="16dp" >
 
             <ImageView
-                android:id="@+id/spark_logo"
+                android:id="@+id/helio_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:maxWidth="163dp"
-                android:src="@drawable/spark_logo_temp"
+				android:maxWidth="220dp"
+                android:src="@drawable/eesd_helio_logo"
                 tools:ignore="ContentDescription" />
 
             <com.danh32.fontify.EditText

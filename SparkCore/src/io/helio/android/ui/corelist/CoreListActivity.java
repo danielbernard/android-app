@@ -32,8 +32,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
+import com.danh32.fontify.Switch;
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
 import com.larswerkman.holocolorpicker.ValueBar;
@@ -66,6 +69,8 @@ CoreListFragment.Callbacks {
 	private Thread batteryThread;
 	private boolean isRunning;
 	private NotificationReceiver nReceiver;
+	private Switch mSwitch;
+	private boolean notificationActive;
 
 	//EESD Handler to redraw menu for batterylevel updates
 	@SuppressLint("HandlerLeak")
@@ -103,6 +108,17 @@ CoreListFragment.Callbacks {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("io.helio.android.ui.eesd.NOTIFICATION_LISTENER");
 		registerReceiver(nReceiver,filter);
+		
+		notificationActive = true;
+		mSwitch = (Switch) findViewById(R.id.notification_switch);
+		mSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				notificationActive = isChecked;
+				Log.d("NOTIFY", "notificationActive is: " + notificationActive);
+			}
+		});
+		
 		//end EESD
 
 		String deviceIdToSelect = null;
@@ -239,35 +255,28 @@ CoreListFragment.Callbacks {
 
 		case R.id.action_bat_level:
 			Toast.makeText(getApplicationContext(), "BAT:" + Integer.toString(batLevel) + "%", Toast.LENGTH_SHORT).show();
-			return true;
+			break;
 
 		case R.id.action_turn_on_off:
 			api.toggleActivation(deviceById.id);
-			return true;
+			break;
 
 		case R.id.action_rainbow:
 			api.rainbow(deviceById.id);
-			return true;
-
-		case R.id.action_blink_led:
-			String color = "630063";
-			String rate = "0500";
-			int iter = 2;
-			api.blinkLed(deviceById.id, color, rate, iter);
-			return true;
+			break;
 
 		case R.id.action_set_up_a_new_core:
 			startActivity(new Intent(this, SmartConfigActivity.class));
-			return true;
+			break;
 
 		case R.id.action_rename_core:
 			new NamingHelper(this, api).showRenameDialog(deviceById);
-			return true;
+			break;
 
 		case android.R.id.home:
 			if (!slidingLayout.isOpen()) {
 				slidingLayout.openPane();
-				return true;
+				break;
 			}
 		}
 
@@ -420,25 +429,21 @@ CoreListFragment.Callbacks {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		// EESD code
 		Log.d("LIFE CYCLE", "onResume called");
 		isRunning = true;
-		// EESD code
 		//Thread handles the changing battery level on the ball
 		Runnable batteryRunnable = new Runnable() {
 			public void run() {
-				batLevel = api.getBatteryLife(deviceById.id);
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e1) {
-					Log.d("EXCEPTION", e1.toString());
-					e1.printStackTrace();
-				}
+
 				while (isRunning) {
-					batLevel = api.getBatteryLife(deviceById.id);
-					//Log.d("TEST", "batLevel is: " + Integer.toString(batLevel));
-					handler.sendMessage(new Message());
 					try {
+						batLevel = api.getBatteryLife(deviceById.id);
 						Thread.sleep(5 * 1000);
+						batLevel = api.getBatteryLife(deviceById.id);
+						Thread.sleep(5 * 1000);
+						handler.sendMessage(new Message());
+						Thread.sleep(20 * 1000);
 					} catch (InterruptedException e) {
 						Log.d("EXCEPTION", e.toString());
 						e.printStackTrace();
@@ -446,9 +451,6 @@ CoreListFragment.Callbacks {
 				}
 			}
 		};
-		batteryThread = new Thread(batteryRunnable);
-		batteryThread.start();
-
 		//Thread handles the colorchanges on the colorwheel
 		Runnable colorRunnable = new Runnable() {
 			public void run() {
@@ -459,11 +461,8 @@ CoreListFragment.Callbacks {
 						sargb = Integer.toHexString(colorNew);
 						srgb = sargb.substring(2);
 						api.setRgbl(deviceById.id, srgb);
-						//Log.d("COLORTHREAD", "colorOld = " + Integer.toHexString(colorOld));
-						//Log.d("COLORTHREAD", "colorNew = " + Integer.toHexString(colorNew));
 						colorOld = colorNew;
 					}
-
 					try {
 						Thread.sleep(200);
 					} catch (InterruptedException e) {
@@ -474,12 +473,15 @@ CoreListFragment.Callbacks {
 			}
 		};
 		colorThread = new Thread(colorRunnable);
+		batteryThread = new Thread(batteryRunnable);
+		batteryThread.start();
 		colorThread.start();
 		
 	}
 
 	@Override
 	protected void onPause() {
+		super.onPause();
 		isRunning = false;
 		Log.d("LIFE CYCLE", "onPause called");
 		try {
@@ -490,7 +492,6 @@ CoreListFragment.Callbacks {
 			e.printStackTrace();
 		}
 		//api.saveColor(deviceById.id);
-		super.onPause();
 	}
 	
 	@Override
@@ -519,34 +520,46 @@ CoreListFragment.Callbacks {
 	class NotificationReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context ctx, Intent intent) {
-			String pkgName = intent.getStringExtra("notification_package_name");
-			int notifId = intent.getIntExtra("notification_id",0);
-			Log.d("NOTIFY", pkgName);
-			String notificationColor = "FF0000";
-			String notificationType = "b";
-			// 20001 is the notification ID for opening a FB ChatHead
-			// 6 is the notification ID for Google's Quick Search which comes up on occasion
-			// Might want to look into an alternate method for avoiding these options
-			if ((notifId != 20001) && (notifId != 6)) {
-				switch(pkgName) {
-				case "com.google.android.apps.googlevoice":
-					notificationColor = "00FF00"; 
-					break;
-				// Not sure if this is the correct package name for the Messenger application
-				case "com.android.mms" :
-					notificationColor = "00FF00";
-					break;
-				case "com.snapchat.android":
-					notificationColor = "FFCC00";
-					break;
-				case "com.facebook.orca":
-					notificationColor = "3B5999";
-					break;
+			if (notificationActive) {
+				String pkgName = intent.getStringExtra("notification_package_name");
+				int notifId = intent.getIntExtra("notification_id",0);
+				Log.d("NOTIFY", pkgName);
+				String notificationColor = "FF0000";
+				String notificationType = "b";
+				if ((notifId != 20001) && (pkgName != "com.google.android.googlequicksearchbox") && 
+						(pkgName != "com.android.systemui")) {
+					switch(pkgName) {
+					case "com.google.android.apps.googlevoice":
+						notificationColor = "00FF00";
+						api.notifyUser(deviceById.id, notificationType, notificationColor);
+						break;
+					case "com.android.mms" :
+						notificationColor = "00FF00";
+						api.notifyUser(deviceById.id, notificationType, notificationColor);
+						break;
+					case "com.snapchat.android":
+						notificationColor = "FFCC00";
+						notificationType = "g";
+						api.notifyUser(deviceById.id, notificationType, notificationColor);
+						break;
+					case "com.facebook.orca":
+						notificationColor = "3B5999";
+						api.notifyUser(deviceById.id, notificationType, notificationColor);
+						break;
+					case "com.facebook.katana":
+						notificationColor = "3B5999";
+						notificationType = "g";
+						api.notifyUser(deviceById.id, notificationType, notificationColor);
+						break;
+					case "com.android.calendar":
+						notificationColor = "FF00FF";
+						api.notifyUser(deviceById.id, notificationType, notificationColor);
+						break;
+					default:
+						break;
+					}
 				}
-				Log.d("NOTIFY", "pkgName: " + pkgName + "\n" + "Color  : " + notificationColor);
-				api.notifyUser(deviceById.id, notificationType, notificationColor);
 			}
 		}
 	}
-
 }
