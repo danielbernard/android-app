@@ -236,6 +236,12 @@ public class ApiFacade {
 		SimpleSparkApiService.post(ctx, new String[] { "devices", coreId, "fn_r" }, args, null, null);
 	}
 	
+	public void glowLed(String coreId, String color) {
+		Bundle args = new Bundle();
+		args.putString("params",  "g_led," + color);
+		SimpleSparkApiService.post(ctx,  new String[] { "devices", coreId, "fn_r" }, args, null, null);
+	}
+	
 	public void saveColor(String coreId) {
 		Bundle args = new Bundle();
 		args.putString("params", "save_color");
@@ -300,43 +306,23 @@ public class ApiFacade {
 
 	//EESD ResponseReceiver Class
 	public class EesdBatteryResponseReceiver extends ApiResponseReceiver {
-
-		//int batteryLevel;
-		
 		public EesdBatteryResponseReceiver(Handler handler) {
 			super(handler);
-			//batteryLevel = 0;
-			//Log.d("TEST", "EesdBatteryResponseReceiver created");
 		}
-
 		@Override
 		public void onRequestResponse(int statusCode, String jsonData) {
-			// TODO Auto-generated method stub
 			try {
-				//Log.d("TEST", "attempting json creation");
 				JSONObject json = new JSONObject(jsonData);
-				//Log.d("TEST", "json created");
-				//Log.d("TEST", json.toString());
 				int batLevel = json.getInt("return_value");
-				//Log.d("TEST", "String assigned: " + Integer.toString(batLevel));
-					//JSONObject idObj = jsonArray.getJSONObject(i);
-					//String batLevel = idObj.getString("result");
-					//log.d("Got ID of core which was 'unheard' via mDNS/CoAP: " + batLevel);
-					//SmartConfigState.addSmartConfigFoundId(unheardCoreId);
-					//instance.claimCore(unheardCoreId);
-				
 				batteryLevel = batLevel;
 
 			} catch (JSONException e) {
-				log.e("Bad JSON response trying to get the IDs of cores which weren't heard from via mDNS/CoAP");
+				log.e("Battery read error: " + e);
 			}
-			
 		}
-		
 		public int getBatteryLevel(){
 			return batteryLevel;
 		}
-		
 	}
 
 	abstract class BaseTinkerValueReceiver extends ApiResponseReceiver {
@@ -545,7 +531,7 @@ public class ApiFacade {
 				}
 
 			} catch (JSONException e) {
-				log.e("Bad JSON response trying to get the IDs of cores which weren't heard from via mDNS/CoAP");
+				log.e("Error getting coreID: " + e);
 			}
 
 		}

@@ -179,7 +179,7 @@
 
     <style name="NotificationText" parent="android:Widget.Holo.Light.TextView">
         <item name="font">@string/roboto_regular</item>
-        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_height">wrap_content</item>
     </style>

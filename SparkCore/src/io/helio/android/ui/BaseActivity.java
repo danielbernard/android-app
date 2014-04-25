@@ -101,7 +101,7 @@ public abstract class BaseActivity extends Activity {
 			// not generally a "best practice" to embed this kind of default
 			// behavior in a common base class like this, but for this app's
 			// needs, it works and appears to have no nasty side effects
-			setCustomActionBarTitle(getString(R.string.app_name_lower));
+			setCustomActionBarTitle(getString(R.string.app_name));
 		}
 	}
 

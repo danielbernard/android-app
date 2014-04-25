@@ -97,7 +97,7 @@ CoreListFragment.Callbacks {
 
 			@Override
 			public void onColorChanged(int color) {
-				// Log.d("PICKER", Integer.toHexString(color));
+				 Log.d("PICKER", Integer.toHexString(color));
 				colorPicker.setOldCenterColor(color);
 				colorNew = color;
 			}
@@ -118,7 +118,6 @@ CoreListFragment.Callbacks {
 				Log.d("NOTIFY", "notificationActive is: " + notificationActive);
 			}
 		});
-		
 		//end EESD
 
 		String deviceIdToSelect = null;
@@ -264,6 +263,10 @@ CoreListFragment.Callbacks {
 		case R.id.action_rainbow:
 			api.rainbow(deviceById.id);
 			break;
+		
+		case R.id.action_glow:
+			api.glowLed(deviceById.id, Integer.toHexString(colorNew).substring(2));
+			break;
 
 		case R.id.action_set_up_a_new_core:
 			startActivity(new Intent(this, SmartConfigActivity.class));
@@ -344,7 +347,7 @@ CoreListFragment.Callbacks {
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 
-		setCustomActionBarTitle(getString(R.string.app_name_lower));
+		setCustomActionBarTitle(getString(R.string.app_name));
 	}
 
 	private void panelClosed() {
