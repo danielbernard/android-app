@@ -90,7 +90,7 @@ CoreListFragment.Callbacks {
 		colorPicker = (ColorPicker) findViewById(R.id.picker);
 		sBar = (SaturationBar) findViewById(R.id.sbar);
 		vBar = (ValueBar) findViewById(R.id.vbar);
-
+		colorNew = Integer.parseInt("00FF00", 16);
 		colorPicker.addSaturationBar(sBar);
 		colorPicker.addValueBar(vBar);
 		ColorPicker.OnColorChangedListener cListener = new ColorPicker.OnColorChangedListener() {
